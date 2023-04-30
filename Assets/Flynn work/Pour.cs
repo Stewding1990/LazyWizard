@@ -7,41 +7,64 @@ public class Pour : MonoBehaviour
 
     public int pourThreshold = 45;
     public Transform origin = null;
-    public GameObject streamPrefab = null;
+    //public GameObject streamPrefab = null;
 
     private bool pouring = false;
     private Stream currentStream = null;
 
+    public ParticleSystem drip;
+    public ParticleSystem spark;
+    public ParticleSystem light;
 
     private void Update()
     {
         bool pourCheck = calculatePouringAngle() < pourThreshold;
 
-        if(pouring != pourCheck)
-        {
-            pouring = pourCheck;
 
-            if (pouring)
+        if (OVRInput.Get(OVRInput.RawButton.A))
+        {
+            spark.Play();
+            light.Play();
+
+            if (pouring != pourCheck)
             {
-                StartPour();
-            }
-            else
-            {
-                EndPour();
+                pouring = pourCheck;
+
+                if (pouring)
+                {
+                    StartPour();
+                }
+                else
+                {
+                    EndPour();
+                }
             }
         }
+        else
+        {
+            spark.Stop();
+            light.Stop();
+        }
+
+
+        
     }
 
     private void StartPour()
     {
         print("start");
-        currentStream = CreateStream();
-        currentStream.Begin();
+
+        drip.Play();
+
+        //currentStream = CreateStream();
+        //currentStream.Begin();
     }
 
     private void EndPour()
     {
         print("end");
+
+        drip.Stop();
     }
 
     private float calculatePouringAngle()
@@ -49,9 +72,5 @@ public class Pour : MonoBehaviour
         return transform.forward.y * Mathf.Rad2Deg;
     }
 
-    private Stream CreateStream()
-    {
-        GameObject streamObject = Instantiate(streamPrefab, origin.position, Quaternion.identity, transform);
-        return streamObject.GetComponent<Stream>();
-    }
+   
 }
