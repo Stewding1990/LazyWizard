@@ -6,6 +6,12 @@ TagManager:
   tags:
   - CandleLight
   - Weapons
+  - Fire
+  - TAZOFX
+  - FireWand
+  - Wand
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX
@@ -14,7 +20,7 @@ TagManager:
   - Water
   - UI
   - InteractableObject
-  - 
+  - FireLayer
   - 
   - 
   - 
