@@ -7,36 +7,56 @@ public class Levitationspell : MonoBehaviour
     [HideInInspector] public CustomGrabbable grabbable;
     [HideInInspector] public Rigidbody rigid;
     public OVRInput.Button spellButton = OVRInput.Button.PrimaryIndexTrigger;
-    public float levitationForce = 20f;
     public GameObject wandTip;
     private bool holdingWand = false;
+
+    //Levitation Variables
+    public float floatHeight = 1f;
+    public float floatSpeed = 0.5f;
+    public float moveSpeed = 0.1f;
+    public float moveSpeedZ = 0.05f;
+    private float distanceToWand;
+    private Vector3 previousPosition;
+    private Rigidbody selectedObjectRigidbody;
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
         grabbable = GetComponent<CustomGrabbable>();
     }
-    private void Update()
+void FixedUpdate()
+{
+    if (holdingWand)
     {
-        // Check if player is holding the wand
-        if (holdingWand)
+        if (OVRInput.Get(spellButton))
         {
-            // Check if the spell key is pressed
-            if (OVRInput.GetDown(spellButton))
-            {
+            RaycastHit hit;
 
-                // Cast the spell
-                RaycastHit hit;
-                if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit))
+            if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit))
+            {
+                selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
+                if (selectedObjectRigidbody != null)
                 {
-                    Debug.Log(hit.collider.gameObject.name);
-                    Debug.DrawLine(wandTip.transform.position, hit.point, Color.green, 10f);
-                    // Apply levitation force to the object hit by the raycast
-                    Rigidbody selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
-                    if (selectedObjectRigidbody != null)
-                    {
-                        Debug.Log(selectedObjectRigidbody);
-                        selectedObjectRigidbody.AddForce(transform.up * levitationForce, ForceMode.Impulse);
-                    }
+                    //distanceToWand = Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position);
+                    Debug.Log(selectedObjectRigidbody.gameObject.name);
+
+                    // disable gravity for the selected object
+                    selectedObjectRigidbody.useGravity = false;
+
+                    // apply the force to the object's rigidbody
+                    float smoothing = 40.0f;
+                    float distanceToWand = 2.0f; // Set the distance between wand tip and object
+                    Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * ((distanceToWand + hit.distance) * 2);
+                    selectedObjectRigidbody.MovePosition(Vector3.Lerp(wandTip.transform.position, targetPosition, smoothing * Time.deltaTime));
+                }
+            }
+        }
+            else
+            {
+                // re-enable gravity for the selected object
+                if (selectedObjectRigidbody != null)
+                {
+                    selectedObjectRigidbody.useGravity = true;
+                    selectedObjectRigidbody = null;
                 }
             }
         }
