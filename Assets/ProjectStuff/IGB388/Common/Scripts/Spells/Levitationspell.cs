@@ -44,10 +44,11 @@ void FixedUpdate()
 
                     // apply the force to the object's rigidbody
                     float smoothing = 40.0f;
-                    float distanceToWand = 2.0f; // Set the distance between wand tip and object
-                    Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * ((distanceToWand + hit.distance) * 2);
+                    distanceToWand = 2.0f; // Set the distance between wand tip and object
+                    Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * ((distanceToWand + hit.distance) * 1.2f);
                     selectedObjectRigidbody.MovePosition(Vector3.Lerp(wandTip.transform.position, targetPosition, smoothing * Time.deltaTime));
-                }
+                    selectedObjectRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                    }
             }
         }
             else
