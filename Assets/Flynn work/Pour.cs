@@ -16,6 +16,14 @@ public class Pour : MonoBehaviour
     public ParticleSystem spark;
     public ParticleSystem light;
 
+
+    public GameObject waterTrigger;
+
+    public void Start()
+    {
+        waterTrigger.SetActive(false);
+    }
+
     private void Update()
     {
         bool pourCheck = calculatePouringAngle() < pourThreshold;
@@ -33,10 +41,14 @@ public class Pour : MonoBehaviour
                 if (pouring)
                 {
                     StartPour();
+
+                    waterTrigger.SetActive(true);
                 }
                 else
                 {
                     EndPour();
+
+                    waterTrigger.SetActive(false);
                 }
             }
         }
