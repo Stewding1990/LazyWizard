@@ -19,8 +19,6 @@ public class TriggerBehanviour : MonoBehaviour
     [Header("Player")]
     public GameObject Player;
 
-    [Header("Waypoints")]
-    public GameObject[] Waypoints;
     // Start is called before the first frame update
     void Start()
     {
