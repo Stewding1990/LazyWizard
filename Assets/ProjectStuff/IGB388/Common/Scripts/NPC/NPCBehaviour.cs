@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCBehaviour : MonoBehaviour
 {
@@ -11,15 +12,24 @@ public class NPCBehaviour : MonoBehaviour
     [Header("Waypoints")]
     public GameObject[] Waypoints;
     private int waypointIndex = 0;
+
+    private NavMeshAgent agent;
+
+    [Header("Animator")]
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isWalking", agent.velocity.magnitude > 0.15);
+
         ChangeState();
         //Lookup state switch
         switch (currentState)
@@ -28,7 +38,6 @@ public class NPCBehaviour : MonoBehaviour
             case 0:
                 Roam();
                 break;
-            //Hide
             case 1:
                 //Hide();
                 break;
@@ -48,16 +57,24 @@ public class NPCBehaviour : MonoBehaviour
 
     private void Roam()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Waypoints[waypointIndex].transform.position, 0.1f);
+        // Set the destination of the NavMeshAgent
+        agent.SetDestination(Waypoints[waypointIndex].transform.position);
 
-        if(Vector3.Distance(transform.position, Waypoints[waypointIndex].transform.position) < 1f)
+        // Check if the agent has reached the current waypoint
+        if (Vector3.Distance(agent.transform.position, Waypoints[waypointIndex].transform.position) <= 1.5f)
         {
+            // Update waypoint index
             waypointIndex++;
+
+            // Wrap around to the first waypoint if all waypoints have been visited
+            if (waypointIndex >= Waypoints.Length)
+            {
+                waypointIndex = 0;
+            }
         }
 
-        if(waypointIndex >= Waypoints.Length)
-        {
-            waypointIndex = 0;
-        }
+
+        Debug.Log(agent.velocity.magnitude);
     }
+
 }

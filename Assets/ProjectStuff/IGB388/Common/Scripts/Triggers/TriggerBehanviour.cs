@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerBehanviour : MonoBehaviour
+public class TriggerBehaviour : MonoBehaviour
 {
     public enum TriggerState
     {
+        WalkingAround,
         HelpingPlayer,
         DoingOwnThing,
-        WalkingAround,
         Something
     };
 
@@ -19,64 +17,52 @@ public class TriggerBehanviour : MonoBehaviour
     [Header("Player")]
     public GameObject Player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            switch (enter)
+            if (enter == TriggerState.HelpingPlayer)
             {
-                case TriggerState.HelpingPlayer:
-                    ChangeNpcBehaviour(0);
-                    break;
-                case TriggerState.DoingOwnThing:
-                    ChangeNpcBehaviour(1);
-                    break;
-                case TriggerState.WalkingAround:
-                    ChangeNpcBehaviour(2);
-                    break;
-                case TriggerState.Something:
-                    ChangeNpcBehaviour(3);
-                    break;
+                ChangeNpcBehaviour(enter);
+
+                // Perform different actions based on the specific trigger
+                switch (gameObject.name)
+                {
+                    case "BookshelfTrigger":
+                        // Action for Trigger1
+                        break;
+                    case "WeaponChestTrigger":
+                        // Action for Trigger2
+                        break;
+                    // Add more cases for other triggers as needed
+                    case "FireWoodTrigger":
+                        // Action for Trigger1
+                        break;
+                    case "PlantTrigger":
+                        // Action for Trigger2
+                        break;
+                    case "DishesTrigger":
+                        // Action for Trigger1
+                        break;
+                    case "WeaponRackTrigger":
+                        // Action for Trigger2
+                        break;
+                }
             }
         }
-    }
-
-    private void ChangeNpcBehaviour(int state)
-    {
-        Player.GetComponent<NPCBehaviour>().newState = state;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            switch (enter)
-            {
-                case TriggerState.HelpingPlayer:
-                    ChangeNpcBehaviour(0);
-                    break;
-                case TriggerState.DoingOwnThing:
-                    ChangeNpcBehaviour(1);
-                    break;
-                case TriggerState.WalkingAround:
-                    ChangeNpcBehaviour(2);
-                    break;
-                case TriggerState.Something:
-                    ChangeNpcBehaviour(3);
-                    break;
-            }
+            ChangeNpcBehaviour(exit);
         }
+    }
+
+    private void ChangeNpcBehaviour(TriggerState state)
+    {
+        int stateIndex = (int)state;
+        Player.GetComponent<NPCBehaviour>().newState = stateIndex;
     }
 }
