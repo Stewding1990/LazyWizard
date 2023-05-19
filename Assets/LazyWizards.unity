@@ -262,10 +262,7 @@ MonoBehaviour:
   m_text: 'This is the plant station, here the player will use a water spell to water
     the plants, followed by a sun spell to make them grow.
 
-
-    This code is yet
-    to be taught / implimented for the MVP, for now, these plants are already fully
-    matured.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -552,10 +549,6 @@ MonoBehaviour:
   m_text: 'For this activity you need to clean up the weapons in this corner, you
     can do this by levitating  all of the weapons into the open chest.
 
-
-    This
-    code is yet to be taught / implimented for the MVP, for now you can throw the
-    items into the chest.
 
 '
   m_isRightToLeft: 0
@@ -2872,10 +2865,7 @@ MonoBehaviour:
   m_text: 'This is the fireplace, the player will need to use levitation to move
     the wood into the firepit, then use a fire spell to ignite it.
 
-
-    This code
-    is yet to be taught / implimented for the MVP, for now, you can simply throw
-    the wood into the firepit which is currently lit.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10416,9 +10406,7 @@ MonoBehaviour:
   m_text: 'This is the weapons rack, here the player will use the levitation spell
     to place various weapons and shields onto the rack
 
-
-    This code is yet to
-    be taught / implimented for the MVP.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11048,9 +11036,7 @@ MonoBehaviour:
   m_text: 'This will be the hint wall, players can come here for tips and hints that
     will be displayed on the wall when they need assistance.
 
-
-    The hourglass
-    will indicate how much time the player has left to complete the tasks.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13623,8 +13609,7 @@ MonoBehaviour:
     then be free to use it. This symbol will be shown to the player via a transparent
     UI.
 
-
-    This code is yet to be taught / implimented for the MVP.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17242,9 +17227,7 @@ MonoBehaviour:
   m_text: 'This is the kitchen, here the player will use a water spell to wash the
     dishes, followed by a sun spell to dry the dishes.
 
-
-    This code is yet to
-    be taught / implimented for the MVP.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18063,9 +18046,7 @@ MonoBehaviour:
   m_text: 'This is the bookshelf, here the player will use a levitation spell to
     levitate the books back onto the shelf.
 
-
-    This code is yet to be taught /
-    implimented for the MVP, for now, you can simply throw the books.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
