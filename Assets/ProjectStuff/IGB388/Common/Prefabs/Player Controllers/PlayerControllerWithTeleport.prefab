@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 2615747307327694711}
   m_Layer: 0
   m_Name: LeftControllerAnchor
-  m_TagString: Untagged
+  m_TagString: LeftHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,6 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 0}
   fireballSpawnPoint: {fileID: 0}
+  fireballSpeed: 20
+  interactRadius: 1
 --- !u!1 &2615747307699922591
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +502,7 @@ GameObject:
   - component: {fileID: 2615747307858776221}
   m_Layer: 0
   m_Name: RightHandAnchor
-  m_TagString: Untagged
+  m_TagString: RightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -610,7 +612,7 @@ GameObject:
   - component: {fileID: 2615747308058072200}
   m_Layer: 2
   m_Name: RightGrabber
-  m_TagString: Untagged
+  m_TagString: RightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1780,7 +1782,7 @@ GameObject:
   - component: {fileID: 2615747307704116984}
   m_Layer: 2
   m_Name: LeftGrabber
-  m_TagString: Untagged
+  m_TagString: LeftHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

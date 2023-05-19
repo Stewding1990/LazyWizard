@@ -8,6 +8,8 @@ TagManager:
   - Weapons
   - Wand
   - Fireball
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX
