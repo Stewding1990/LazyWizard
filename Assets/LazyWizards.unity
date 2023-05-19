@@ -5963,6 +5963,8 @@ MonoBehaviour:
   interactRadius: 0.5
   leftHandDetection: {fileID: 2040108216}
   rightHandDetection: {fileID: 1614791560}
+  spellButtonL: 8192
+  spellButtonR: 2097152
 --- !u!136 &696382529
 CapsuleCollider:
   m_ObjectHideFlags: 0

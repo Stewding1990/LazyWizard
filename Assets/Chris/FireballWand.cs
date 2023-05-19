@@ -14,16 +14,19 @@ public class FireballWand : MonoBehaviour
     private bool canShoot = true;            // Add a boolean flag to indicate if the player can shoot a fireball
     private float fireballCooldown = 0.5f;   // Add a float to set the cooldown time in seconds
 
+    public OVRInput.Button spellButtonL;
+    public OVRInput.Button spellButtonR;
+
     void Update()
     {
         // Check if the left index trigger is pressed while the controller is in contact with the left hand detection point
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && IsColliding(leftHandDetection))
+        if (OVRInput.GetDown(spellButtonL) && IsColliding(leftHandDetection))
         {
             ShootFireball();
         }
 
         // Check if the right index trigger is pressed while the controller is in contact with the right hand detection point
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && IsColliding(rightHandDetection))
+        if (OVRInput.GetDown(spellButtonR) && IsColliding(rightHandDetection))
         {
             ShootFireball();
         }
