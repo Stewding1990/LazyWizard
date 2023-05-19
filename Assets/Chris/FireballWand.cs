@@ -28,7 +28,7 @@ public class FireballWand : MonoBehaviour
 
             // Instantiate the fireball at the spawn point, with the desired scale
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnPoint.position, fireballSpawnPoint.rotation);
-            fireball.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            //fireball.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
 
             // Add physics to the fireball
             Rigidbody fireballRigidbody = fireball.GetComponent<Rigidbody>();
