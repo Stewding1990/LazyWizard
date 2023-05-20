@@ -7,6 +7,9 @@ TagManager:
   - CandleLight
   - Weapons
   - Wand
+  - Fireball
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX
