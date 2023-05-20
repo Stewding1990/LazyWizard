@@ -7,7 +7,7 @@ public class NPCBehaviour : MonoBehaviour
 {
     [Header("NPC States")]
     public int newState = 0;
-    protected int currentState = 0;
+    public int currentState = 0;
 
     [Header("Waypoints")]
     public GameObject[] Waypoints;
@@ -29,7 +29,10 @@ public class NPCBehaviour : MonoBehaviour
     void Update()
     {
         animator.SetBool("isWalking", agent.velocity.magnitude > 0.15);
-
+        if(currentState != 0)
+        {
+            Debug.Log("we changed");
+        }
         ChangeState();
         //Lookup state switch
         switch (currentState)
@@ -39,6 +42,7 @@ public class NPCBehaviour : MonoBehaviour
                 Roam();
                 break;
             case 1:
+                Debug.Log("changed here");
                 //Hide();
                 break;
             //Attack
@@ -72,9 +76,6 @@ public class NPCBehaviour : MonoBehaviour
                 waypointIndex = 0;
             }
         }
-
-
-        Debug.Log(agent.velocity.magnitude);
     }
 
 }

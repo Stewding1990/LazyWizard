@@ -5015,6 +5015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newState: 0
+  currentState: 0
   Waypoints:
   - {fileID: 656807573}
   - {fileID: 1696642286}
@@ -5056,7 +5057,6 @@ GameObject:
   - component: {fileID: 578987645}
   - component: {fileID: 578987644}
   - component: {fileID: 578987643}
-  - component: {fileID: 578987648}
   - component: {fileID: 578987647}
   m_Layer: 0
   m_Name: WeaponRackTrigger
@@ -5073,7 +5073,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578987642}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5155,21 +5155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
+  enter: 1
   exit: 0
-  Player: {fileID: 0}
---- !u!114 &578987648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578987642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32b51cdeb304149b14a4221e4910db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  npcBehaviour: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!4 &589264473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6146498833018615571, guid: d7f16bebf84a8be45a4edf754a799508, type: 3}
@@ -11820,11 +11809,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313327066}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1722157, y: 1, z: 1}
+  m_Center: {x: -0.08610702, y: 0, z: -0.0000000010760326}
 --- !u!23 &1313327068
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11832,7 +11821,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313327066}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11874,7 +11863,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313327066}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: d454052e46cc5cd449ddb66f18c6c3a5, type: 3}
 --- !u!4 &1313327070
 Transform:
   m_ObjectHideFlags: 0
@@ -11902,9 +11891,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
+  enter: 1
   exit: 0
-  Player: {fileID: 0}
+  npcBehaviour: {fileID: 574172652}
+  NPC: {fileID: 574172646}
 --- !u!1001 &1333214807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12303,7 +12293,6 @@ GameObject:
   - component: {fileID: 1368137803}
   - component: {fileID: 1368137802}
   - component: {fileID: 1368137801}
-  - component: {fileID: 1368137806}
   - component: {fileID: 1368137805}
   m_Layer: 0
   m_Name: DishesTrigger
@@ -12320,7 +12309,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368137800}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -12402,21 +12391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
+  enter: 1
   exit: 0
-  Player: {fileID: 0}
---- !u!114 &1368137806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368137800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32b51cdeb304149b14a4221e4910db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  npcBehaviour: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!1001 &1368415983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13100,7 +13078,6 @@ GameObject:
   - component: {fileID: 1428688491}
   - component: {fileID: 1428688490}
   - component: {fileID: 1428688489}
-  - component: {fileID: 1428688493}
   - component: {fileID: 1428688492}
   m_Layer: 0
   m_Name: PlantTrigger
@@ -13132,7 +13109,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428688487}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -13199,21 +13176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
+  enter: 1
   exit: 0
-  Player: {fileID: 0}
---- !u!114 &1428688493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428688487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32b51cdeb304149b14a4221e4910db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  npcBehaviour: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!1001 &1430634388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14758,7 +14724,7 @@ GameObject:
   - component: {fileID: 1533059061}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14804,7 +14770,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -16337,7 +16303,6 @@ GameObject:
   - component: {fileID: 1649952434}
   - component: {fileID: 1649952433}
   - component: {fileID: 1649952432}
-  - component: {fileID: 1649952437}
   - component: {fileID: 1649952436}
   m_Layer: 0
   m_Name: WeaponChestTrigger
@@ -16354,7 +16319,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649952431}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -16436,21 +16401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
+  enter: 1
   exit: 0
-  Player: {fileID: 0}
---- !u!114 &1649952437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649952431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32b51cdeb304149b14a4221e4910db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  npcBehaviour: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!1001 &1655299914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22485,7 +22439,6 @@ GameObject:
   - component: {fileID: 2130257456}
   - component: {fileID: 2130257455}
   - component: {fileID: 2130257454}
-  - component: {fileID: 2130257459}
   - component: {fileID: 2130257458}
   m_Layer: 0
   m_Name: FireWoodTrigger
@@ -22502,7 +22455,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130257453}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -22584,21 +22537,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0ffcc8b2841f4a924c60342811e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enter: 0
-  exit: 0
-  Player: {fileID: 0}
---- !u!114 &2130257459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130257453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e32b51cdeb304149b14a4221e4910db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enter: 1
+  exit: 2
+  npcBehaviour: {fileID: 574172652}
+  NPC: {fileID: 574172646}
 --- !u!1001 &2135111556
 PrefabInstance:
   m_ObjectHideFlags: 0
