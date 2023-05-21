@@ -6,6 +6,8 @@ public class Fireplace : MonoBehaviour
     public List<GameObject> firewoodObjects = new List<GameObject>();
     public List<GameObject> fireplaceLocations = new List<GameObject>();
     public GameObject fireballEffect;
+    public GameObject IncompleteCandles;
+    public GameObject CompleteCandles;
 
     private bool fireWoodReady = false;
     private bool FirePlaceComplete = false;
@@ -31,6 +33,8 @@ public class Fireplace : MonoBehaviour
         else if (other.CompareTag("Fireball") && fireWoodReady)
         {
             fireballEffect.SetActive(true);
+            IncompleteCandles.SetActive(false);
+            CompleteCandles.SetActive(true);
             FirePlaceComplete = true;
         }
     }
