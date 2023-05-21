@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CandleLight
   - Weapons
+  - Light
+  - Plant
   layers:
   - Default
   - TransparentFX

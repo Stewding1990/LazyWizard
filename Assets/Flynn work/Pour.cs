@@ -14,7 +14,7 @@ public class Pour : MonoBehaviour
 
     public ParticleSystem drip;
     public ParticleSystem spark;
-    public ParticleSystem light;
+    public ParticleSystem Wlight;
 
 
     public GameObject waterTrigger;
@@ -32,7 +32,7 @@ public class Pour : MonoBehaviour
         if (OVRInput.Get(OVRInput.RawButton.A))
         {
             spark.Play();
-            light.Play();
+            Wlight.Play();
 
             if (pouring != pourCheck)
             {
@@ -55,7 +55,7 @@ public class Pour : MonoBehaviour
         else
         {
             spark.Stop();
-            light.Stop();
+            Wlight.Stop();
         }
 
 
