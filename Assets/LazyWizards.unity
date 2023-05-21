@@ -14696,7 +14696,7 @@ GameObject:
   - component: {fileID: 559415040}
   m_Layer: 0
   m_Name: Tree 3 Collider
-  m_TagString: Plant
+  m_TagString: Plant3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14728,14 +14728,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5063200cd6a7b848b614e89826d16f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1887676051277398672}
   pot: {fileID: 1292776627}
   targetscale: {x: 0.05, y: 0.05, z: 0.05}
   speed: 1
-  potDarker1: {fileID: 8171766137613127527}
+  potDarker1: {fileID: 1887676052633989379}
   potDarker2: {fileID: 2437808701148842905}
   potDarker3: {fileID: 8171766137613127527}
   potDarker4: {fileID: 5923870422680499464}
+  tree1: {fileID: 1887676052633989379}
+  tree2: {fileID: 1887676052108011660}
+  tree3: {fileID: 1887676051277398672}
+  tree4: {fileID: 1887676052985501076}
 --- !u!65 &559415041
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19047,7 +19050,7 @@ GameObject:
   - component: {fileID: 1081561125}
   m_Layer: 0
   m_Name: Tree 2 collider
-  m_TagString: Plant
+  m_TagString: Plant2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19079,14 +19082,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5063200cd6a7b848b614e89826d16f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1887676052108011660}
   pot: {fileID: 1292776627}
   targetscale: {x: 0.05, y: 0.05, z: 0.05}
   speed: 1
-  potDarker1: {fileID: 2437808701148842905}
+  potDarker1: {fileID: 1887676052633989379}
   potDarker2: {fileID: 2437808701148842905}
   potDarker3: {fileID: 8171766137613127527}
   potDarker4: {fileID: 5923870422680499464}
+  tree1: {fileID: 1887676052633989379}
+  tree2: {fileID: 1887676052108011660}
+  tree3: {fileID: 1887676051277398672}
+  tree4: {fileID: 1887676052985501076}
 --- !u!65 &1081561126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22633,7 +22639,7 @@ GameObject:
   - component: {fileID: 1466099073}
   m_Layer: 0
   m_Name: Tree 4 Collider
-  m_TagString: Plant
+  m_TagString: Plant4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22665,14 +22671,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5063200cd6a7b848b614e89826d16f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1887676052985501076}
   pot: {fileID: 1292776627}
   targetscale: {x: 0.05, y: 0.05, z: 0.05}
   speed: 1
-  potDarker1: {fileID: 5923870422680499464}
+  potDarker1: {fileID: 1887676052633989379}
   potDarker2: {fileID: 2437808701148842905}
   potDarker3: {fileID: 8171766137613127527}
   potDarker4: {fileID: 5923870422680499464}
+  tree1: {fileID: 1887676052633989379}
+  tree2: {fileID: 1887676052108011660}
+  tree3: {fileID: 1887676051277398672}
+  tree4: {fileID: 1887676052985501076}
 --- !u!65 &1466099074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33855,7 +33864,7 @@ GameObject:
   - component: {fileID: 1979004464}
   m_Layer: 0
   m_Name: Tree 1 collider
-  m_TagString: Plant
+  m_TagString: Plant1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33887,7 +33896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5063200cd6a7b848b614e89826d16f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1887676052633989379}
   pot: {fileID: 1292776627}
   targetscale: {x: 0.05, y: 0.05, z: 0.05}
   speed: 1
@@ -33895,6 +33903,10 @@ MonoBehaviour:
   potDarker2: {fileID: 2437808701148842905}
   potDarker3: {fileID: 8171766137613127527}
   potDarker4: {fileID: 5923870422680499464}
+  tree1: {fileID: 1887676052633989379}
+  tree2: {fileID: 1887676052108011660}
+  tree3: {fileID: 1887676051277398672}
+  tree4: {fileID: 1887676052985501076}
 --- !u!65 &1979004465
 BoxCollider:
   m_ObjectHideFlags: 0

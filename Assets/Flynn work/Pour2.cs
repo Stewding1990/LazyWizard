@@ -43,10 +43,28 @@ public class Pour2 : MonoBehaviour
                 {
                     Debug.DrawLine(originTop.transform.position, hit.point, Color.cyan);
 
-                    if (hit.collider.tag == "Plant")
+                    if (hit.collider.tag == "Plant1")
                     {
-                        Debug.Log("hit plant");
-                        TreeGrow.watered = true;
+                        
+                        TreeGrow.watered1 = true;
+                    }
+
+                    if (hit.collider.tag == "Plant2")
+                    {
+                        
+                        TreeGrow.watered2 = true;
+                    }
+
+                    if (hit.collider.tag == "Plant3")
+                    {
+                        
+                        TreeGrow.watered3 = true;
+                    }
+
+                    if (hit.collider.tag == "Plant4")
+                    {
+                        
+                        TreeGrow.watered4 = true;
                     }
                 }
                 
