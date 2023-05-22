@@ -103,6 +103,5 @@ public class TeleportOrientationHandlerHMD : TeleportOrientationHandler
 		var rot3 = Quaternion.LookRotation(new Vector3(t.forward.x, 0, t.forward.z), Vector3.up);
 		LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot3, rot3);
 		//LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, _initialRotation, _initialRotation);
-		Debug.Log("Did reset teleport !!! !");
 	}
 }
