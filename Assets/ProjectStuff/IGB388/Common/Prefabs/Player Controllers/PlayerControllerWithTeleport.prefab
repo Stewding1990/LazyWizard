@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 2615747307327694711}
   m_Layer: 0
   m_Name: LeftControllerAnchor
-  m_TagString: Untagged
+  m_TagString: LeftHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 2615747307447103629}
   - component: {fileID: 2615747307447103626}
   - component: {fileID: 2615747307447103627}
+  - component: {fileID: 6244883297331201620}
   m_Layer: 0
   m_Name: PlayerControllerWithTeleport
   m_TagString: Untagged
@@ -342,6 +343,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &6244883297331201620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615747307447103624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ee6240a4012f5439336d14448ead28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 0}
+  fireballSpawnPoint: {fileID: 0}
+  fireballSpeed: 20
+  interactRadius: 1
+  leftHandDetection: {fileID: 0}
+  rightHandDetection: {fileID: 0}
+  spellButtonL: 0
+  spellButtonR: 0
 --- !u!1 &2615747307699922591
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +506,7 @@ GameObject:
   - component: {fileID: 2615747307858776221}
   m_Layer: 0
   m_Name: RightHandAnchor
-  m_TagString: Untagged
+  m_TagString: RightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,7 +616,7 @@ GameObject:
   - component: {fileID: 2615747308058072200}
   m_Layer: 2
   m_Name: RightGrabber
-  m_TagString: Untagged
+  m_TagString: RightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,7 +663,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2615747308058072200
 MonoBehaviour:
@@ -1765,7 +1786,7 @@ GameObject:
   - component: {fileID: 2615747307704116984}
   m_Layer: 2
   m_Name: LeftGrabber
-  m_TagString: Untagged
+  m_TagString: LeftHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1812,7 +1833,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2615747307704116984
 MonoBehaviour:
