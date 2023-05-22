@@ -6,11 +6,11 @@ TagManager:
   tags:
   - CandleLight
   - Weapons
-  - Light
-  - Plant1
-  - Plant2
-  - Plant3
-  - Plant4
+  - Wand
+  - Fireball
+  - LeftHand
+  - RightHand
+  - Firewood
   layers:
   - Default
   - TransparentFX
