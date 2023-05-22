@@ -23,7 +23,6 @@ public class TriggerBehanviour : MonoBehaviour
         if (other.tag == "Player")
         {
             npcBehaviour = NPC.GetComponent<NPCBehaviour>();
-            Debug.Log(npcBehaviour);
             ChangeNpcBehaviour(enter);
             if (npcBehaviour.currentState == 1)
             {
