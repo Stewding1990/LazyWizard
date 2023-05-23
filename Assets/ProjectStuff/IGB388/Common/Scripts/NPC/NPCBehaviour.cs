@@ -22,15 +22,22 @@ public class NPCBehaviour : MonoBehaviour
     [Header("Animator")]
     private Animator animator;
     public AnimationClip[] ownThingAnimations;
-    public float animationDuration = 2.0f;
-
-
+    private float[] animationDurations; // Array to store animation clip durations
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        // Initialize animation duration array
+        animationDurations = new float[ownThingAnimations.Length];
+
+        // Calculate and store animation clip durations
+        for (int i = 0; i < ownThingAnimations.Length; i++)
+        {
+            animationDurations[i] = ownThingAnimations[i].length;
+        }
     }
 
     // Update is called once per frame
@@ -38,25 +45,27 @@ public class NPCBehaviour : MonoBehaviour
     {
         animator.SetBool("isWalking", agent.velocity.magnitude > 0.15);
         ChangeState();
-        //Lookup state switch
+
+        // Lookup state switch
         switch (currentState)
         {
-            //Roam
+            // Roam
             case 0:
                 WalkingAround();
                 break;
             case 1:
-                //HelpingPlayer();
+                // HelpingPlayer();
                 break;
-            //Attack
+            // Attack
             case 2:
                 DoingownThing();
                 break;
             case 3:
-                //StalkPlayerUpdate();
+                // StalkPlayerUpdate();
                 break;
         }
     }
+
     private void ChangeState()
     {
         currentState = newState;
@@ -84,6 +93,7 @@ public class NPCBehaviour : MonoBehaviour
     private void DoingownThing()
     {
         if (isAnimating) return;
+
         // Set the current destination
         currentDestination = doingOwnThingWayPoints[destinationIndex].transform.position;
 
@@ -124,8 +134,11 @@ public class NPCBehaviour : MonoBehaviour
                 break;
         }
 
+        // Get the duration of the current animation clip
+        float clipDuration = animationDurations[destinationIndex];
+
         // Wait for the animation to finish playing
-        yield return new WaitForSeconds(animationDuration);
+        yield return new WaitForSeconds(clipDuration);
 
         // Reset the animation bool
         switch (destinationIndex)
@@ -161,5 +174,4 @@ public class NPCBehaviour : MonoBehaviour
         // Reset the flag after animation is finished
         isAnimating = false;
     }
-
 }
