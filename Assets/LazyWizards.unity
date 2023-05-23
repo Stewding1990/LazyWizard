@@ -10359,11 +10359,10 @@ MonoBehaviour:
   - {fileID: 2038066211}
   - {fileID: 62166551}
   ownThingAnimations:
-  - {fileID: 7400000, guid: e5325ecccbec8e94f957227cd2b72fca, type: 3}
+  - {fileID: 7400000, guid: 9cf799ef67aa99a48bfffcb222ef873f, type: 3}
   - {fileID: 7400000, guid: 4a412c425e347044d9bd20cf127cd4c9, type: 3}
   - {fileID: 7400000, guid: 80af840f088dd4441b21c0a283bd553f, type: 2}
   - {fileID: 7400000, guid: 80af840f088dd4441b21c0a283bd553f, type: 2}
-  animationDuration: 2
 --- !u!54 &1139453446
 Rigidbody:
   m_ObjectHideFlags: 0

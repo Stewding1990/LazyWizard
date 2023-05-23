@@ -113,6 +113,9 @@ public class NPCBehaviour : MonoBehaviour
         // Set the flag to indicate an animation is playing
         isAnimating = true;
 
+        // Set the "isWalking" parameter to false to stop the walking animation
+        animator.SetBool("isWalking", false);
+
         // Perform the animation based on the destination index
         switch (destinationIndex)
         {
@@ -138,7 +141,7 @@ public class NPCBehaviour : MonoBehaviour
         float clipDuration = animationDurations[destinationIndex];
 
         // Wait for the animation to finish playing
-        yield return new WaitForSeconds(clipDuration);
+        yield return new WaitForSeconds(clipDuration * 1.2f);
 
         // Reset the animation bool
         switch (destinationIndex)
@@ -170,6 +173,9 @@ public class NPCBehaviour : MonoBehaviour
 
         // Resume movement towards the next destination
         agent.isStopped = false;
+
+        // Set the "isWalking" parameter to true to resume the walking animation
+        animator.SetBool("isWalking", true);
 
         // Reset the flag after animation is finished
         isAnimating = false;
