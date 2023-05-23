@@ -11,6 +11,7 @@ TagManager:
   - LeftHand
   - RightHand
   - Firewood
+  - Trash
   layers:
   - Default
   - TransparentFX
