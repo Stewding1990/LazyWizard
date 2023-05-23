@@ -12,6 +12,13 @@ TagManager:
   - RightHand
   - Firewood
   - Trash
+  - TAZOFX
+  - Fire
+  - Plant1
+  - Light
+  - Plant2
+  - Plant3
+  - Plant4
   layers:
   - Default
   - TransparentFX
