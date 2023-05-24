@@ -359,6 +359,10 @@ MonoBehaviour:
   fireballSpawnPoint: {fileID: 0}
   fireballSpeed: 20
   interactRadius: 1
+  leftHandDetection: {fileID: 0}
+  rightHandDetection: {fileID: 0}
+  spellButtonL: 0
+  spellButtonR: 0
 --- !u!1 &2615747307699922591
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +663,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2615747308058072200
 MonoBehaviour:
@@ -1829,7 +1833,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2615747307704116984
 MonoBehaviour:
