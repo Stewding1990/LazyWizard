@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Levitationspell : MonoBehaviour
@@ -6,99 +7,99 @@ public class Levitationspell : MonoBehaviour
     [HideInInspector] public CustomGrabbable grabbable;
     [HideInInspector] public Rigidbody rigid;
     public OVRInput.Button spellButton = OVRInput.Button.PrimaryIndexTrigger;
+    public OVRInput.Button distanceControlButton = OVRInput.Button.Two;
     public GameObject wandTip;
-    public LineRenderer lineRenderer;
-
     private bool holdingWand = false;
-    private Rigidbody selectedObjectRigidbody;
-    private Coroutine levitationCoroutine;
 
     // Levitation Variables
-    public float floatHeight = 1f;
-    public float floatSpeed = 0.5f;
-    public float moveSpeed = 0.1f;
-    public float moveSpeedZ = 0.05f;
-    private float distanceToWand;
+    private Vector3 initialDistanceToWand;
+    private Vector3 currentDistanceToWand;
+    private Vector3 previousPosition;
+    private Rigidbody selectedObjectRigidbody;
+    public LayerMask levitateLayer;
 
-    private RaycastHit hit;
+    // Smoothness variables
+    public float smoothing = 40.0f;
+    public float distanceChangeSpeed = 1.0f;
+    public float minDistanceToWand = 0.5f;
+    public float maxDistanceToWand = 20.0f;
+    public float distanceThreshold = 0.2f;
 
     private void Start()
     {
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
+        rigid = GetComponent<Rigidbody>();
+        grabbable = GetComponent<CustomGrabbable>();
+        initialDistanceToWand = wandTip.transform.localPosition;
+        currentDistanceToWand = initialDistanceToWand;
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        if (holdingWand && OVRInput.Get(spellButton))
+        if (holdingWand)
         {
-            if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit))
+            if (OVRInput.Get(spellButton))
             {
-                selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
-                if (selectedObjectRigidbody != null)
+                RaycastHit hit;
+
+                if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit, 50f, levitateLayer))
                 {
-                    StartLevitation();
+                    selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
+                    if (selectedObjectRigidbody != null)
+                    {
+                        // Calculate the target position for smooth movement
+                        Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
+
+                        // Check if the distance to the wand is over the threshold
+                        float distanceToWand = Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position);
+
+                        // Check if the Y button is pressed
+                        if (OVRInput.Get(distanceControlButton))
+                        {
+                            Debug.Log("Its the right button");
+                            if (distanceToWand < maxDistanceToWand)
+                            {
+                                // Increase the distance to the wand
+                                currentDistanceToWand.z += distanceChangeSpeed * Time.deltaTime;
+                                currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
+                                Debug.Log(currentDistanceToWand.z);
+                            }
+                        }
+                        else
+                        {
+                            if (distanceToWand > minDistanceToWand)
+                            {
+                                // Decrease the distance to the wand
+                                currentDistanceToWand.z -= distanceChangeSpeed * Time.deltaTime;
+                                currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
+                            }
+                        }
+
+                        // Disable gravity for the selected object
+                        selectedObjectRigidbody.useGravity = false;
+
+                        // Calculate the new target position based on the adjusted distance
+                        targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
+
+                        // Smoothly move the object towards the target position
+                        selectedObjectRigidbody.MovePosition(Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, smoothing * Time.deltaTime));
+                    }
+                }
+                else
+                {
+                    // Re-enable gravity for the selected object
+                    if (selectedObjectRigidbody != null)
+                    {
+                        selectedObjectRigidbody.useGravity = true;
+                        selectedObjectRigidbody = null;
+                    }
                 }
             }
-
-            lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0, wandTip.transform.position);
-            lineRenderer.SetPosition(1, hit.point);
-        }
-        else
-        {
-            StopLevitation();
-
-            lineRenderer.enabled = false;
-        }
-    }
-
-    private void StartLevitation()
-    {
-        if (levitationCoroutine == null)
-        {
-            // Disable gravity for the selected object
-            selectedObjectRigidbody.useGravity = false;
-
-            // Start the levitation coroutine
-            levitationCoroutine = StartCoroutine(LevitateObject());
-        }
-    }
-
-    private void StopLevitation()
-    {
-        if (levitationCoroutine != null)
-        {
-            // Re-enable gravity for the selected object
-            selectedObjectRigidbody.useGravity = true;
-
-            // Stop the levitation coroutine
-            StopCoroutine(levitationCoroutine);
-            levitationCoroutine = null;
-        }
-    }
-
-    private IEnumerator LevitateObject()
-    {
-        while (true)
-        {
-            distanceToWand = 2.0f; // Set the distance between wand tip and object
-            Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * ((distanceToWand + hit.distance) * 1.2f);
-
-            // Smoothly move the object towards the target position
-            while (Vector3.Distance(selectedObjectRigidbody.transform.position, targetPosition) > 0.01f)
-            {
-                selectedObjectRigidbody.MovePosition(Vector3.Lerp(selectedObjectRigidbody.transform.position, targetPosition, moveSpeed * Time.deltaTime));
-                yield return null;
-            }
-
-            yield return null;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!holdingWand)
+        if (!grabbable.isGrabbed)
         {
             PutDownWand();
             return;
@@ -111,12 +112,13 @@ public class Levitationspell : MonoBehaviour
     public void PickUpWand()
     {
         holdingWand = true;
-        Debug.Log("Wand picked up");
+        currentDistanceToWand = initialDistanceToWand;
+        Debug.Log(holdingWand);
     }
 
     public void PutDownWand()
     {
         holdingWand = false;
-        Debug.Log("Wand put down");
+        Debug.Log(holdingWand);
     }
 }
