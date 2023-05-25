@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TriggerBehanviour : MonoBehaviour
@@ -18,44 +19,61 @@ public class TriggerBehanviour : MonoBehaviour
     public NPCBehaviour npcBehaviour;
     public GameObject NPC;
     private bool isDoingTask = false;
+    private Coroutine firePlaceCoroutine;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             npcBehaviour = NPC.GetComponent<NPCBehaviour>();
+
+            // Update the NPC's state
             ChangeNpcBehaviour(enter);
-            if (npcBehaviour.currentState == 1)
+
+            // Wait for the next frame to ensure the state has been updated
+            StartCoroutine(ProcessTriggerActions());
+        }
+    }
+
+    private IEnumerator ProcessTriggerActions()
+    {
+        // Wait for the next frame to ensure the state has been updated
+        yield return null;
+
+        // Check if the current state is 1 (assuming 1 represents the state you're interested in)
+        if (npcBehaviour.currentState == 1)
+        {
+            // Perform different actions based on the specific trigger
+            switch (gameObject.name)
             {
-                // Perform different actions based on the specific trigger
-                switch (gameObject.name)
-                {
-                    case "BookshelfTrigger":
-                        Debug.Log("Bookshelf");
-                        break;
-                    case "WeaponChestTrigger":
-                        Debug.Log("Weapon Chest");
-                        break;
-                    case "FireWoodTrigger":
-                        Debug.Log("Firewood");
-                        break;
-                    case "PlantTrigger":
-                        Debug.Log("Plant");
-                        break;
-                    case "DishesTrigger":
-                        Debug.Log("Dishes");
-                        break;
-                    case "WeaponRackTrigger":
-                        Debug.Log("WeaponRack");
-                        break;
-                }
+                case "BookshelfTrigger":
+                    Debug.Log("Bookshelf");
+                    break;
+                case "WeaponChestTrigger":
+                    Debug.Log("Weapon Chest");
+                    break;
+                case "FireWoodTrigger":
+                    Debug.Log("Firewood");
+                    StartFirePlaceActivity();
+                    break;
+                case "PlantTrigger":
+                    Debug.Log("Plant");
+                    break;
+                case "DishesTrigger":
+                    Debug.Log("Dishes");
+                    break;
+                case "WeaponRackTrigger":
+                    Debug.Log("WeaponRack");
+                    break;
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == ("Player"))
+        if (other.CompareTag("Player"))
         {
+            StopFirePlaceActivity();
             ChangeNpcBehaviour(exit);
         }
     }
@@ -66,7 +84,6 @@ public class TriggerBehanviour : MonoBehaviour
         {
             int stateIndex = (int)state;
             npcBehaviour.newState = stateIndex;
-            Debug.Log(npcBehaviour.newState);
         }
         else
         {
@@ -74,4 +91,31 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
+    private void StartFirePlaceActivity()
+    {
+        if (firePlaceCoroutine == null)
+        {
+            firePlaceCoroutine = StartCoroutine(FirePlaceActivityCoroutine());
+        }
+    }
+
+    private void StopFirePlaceActivity()
+    {
+        if (firePlaceCoroutine != null)
+        {
+            StopCoroutine(firePlaceCoroutine);
+            firePlaceCoroutine = null;
+        }
+    }
+
+    private IEnumerator FirePlaceActivityCoroutine()
+    {
+        while (true)
+        {
+            npcBehaviour.FirePlaceActivity();
+
+            // Wait for the next frame
+            yield return null;
+        }
+    }
 }

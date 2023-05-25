@@ -17,12 +17,21 @@ public class NPCBehaviour : MonoBehaviour
     private int destinationIndex = 0;
     private Vector3 currentDestination;
 
+    [Header("Player Reference")]
+    public GameObject Player;
+
     private NavMeshAgent agent;
 
     [Header("Animator")]
     private Animator animator;
     public AnimationClip[] ownThingAnimations;
     private float[] animationDurations; // Array to store animation clip durations
+
+    [Header("Candles for Each activity")]
+    public GameObject bookshelfIncompleteCandles;
+    public GameObject bookshelfCompleteCandles;
+    private bool dialoguePlayed = false; // Flag to track if dialogue has been played
+
 
     // Start is called before the first frame update
     void Start()
@@ -180,4 +189,39 @@ public class NPCBehaviour : MonoBehaviour
         // Reset the flag after animation is finished
         isAnimating = false;
     }
+
+    public void FirePlaceActivity()
+    {
+        agent.SetDestination(Waypoints[4].transform.position);
+
+        if (Vector3.Distance(agent.transform.position, Waypoints[4].transform.position) < 2f)
+        {
+            Debug.Log("here");
+            agent.isStopped = true;
+            agent.transform.LookAt(Player.transform);
+
+            if (!dialoguePlayed) // Check if dialogue has already been played
+            {
+                // Play random dialogue based on the state of candles
+                if (bookshelfIncompleteCandles.activeSelf)
+                {
+                    Debug.Log("I want to play sound");
+                    AudioManager.Instance.PlayRandomDialogueClip();
+                }
+                else if (bookshelfCompleteCandles.activeSelf)
+                {
+                    Debug.Log("I want to play sound x 2");
+                    AudioManager.Instance.PlayRandomDialogueClip();
+                }
+
+                dialoguePlayed = true; // Set the flag to true
+            }
+        }
+        else
+        {
+            agent.isStopped = false;
+        }
+    }
+
+
 }

@@ -19,6 +19,7 @@ TagManager:
   - Plant2
   - Plant3
   - Plant4
+  - WhiteBoard
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Water
   - UI
   - InteractableObject
-  - 
+  - CanLevitate
   - 
   - 
   - 
