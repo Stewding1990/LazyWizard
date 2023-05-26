@@ -190,9 +190,9 @@ public class NPCBehaviour : MonoBehaviour
         isAnimating = false;
     }
 
-    public void FirePlaceActivity()
+    public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
     {
-        agent.SetDestination(Waypoints[4].transform.position);
+        agent.SetDestination(Waypoints[waypointIndex].transform.position);
 
         if (Vector3.Distance(agent.transform.position, Waypoints[4].transform.position) < 2f)
         {
@@ -206,12 +206,12 @@ public class NPCBehaviour : MonoBehaviour
                 if (bookshelfIncompleteCandles.activeSelf)
                 {
                     Debug.Log("I want to play sound");
-                    AudioManager.Instance.PlayRandomDialogueClip();
+                    AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
                 }
                 else if (bookshelfCompleteCandles.activeSelf)
                 {
                     Debug.Log("I want to play sound x 2");
-                    AudioManager.Instance.PlayRandomDialogueClip();
+                    AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
                 }
 
                 dialoguePlayed = true; // Set the flag to true
@@ -222,6 +222,7 @@ public class NPCBehaviour : MonoBehaviour
             agent.isStopped = false;
         }
     }
+
 
 
 }

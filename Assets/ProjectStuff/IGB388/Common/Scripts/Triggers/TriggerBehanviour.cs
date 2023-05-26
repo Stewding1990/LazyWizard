@@ -19,7 +19,7 @@ public class TriggerBehanviour : MonoBehaviour
     public NPCBehaviour npcBehaviour;
     public GameObject NPC;
     private bool isDoingTask = false;
-    private Coroutine firePlaceCoroutine;
+    private Coroutine activityCoroutine;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -48,22 +48,27 @@ public class TriggerBehanviour : MonoBehaviour
             {
                 case "BookshelfTrigger":
                     Debug.Log("Bookshelf");
+                    StartActivity(0, AudioManager.Instance.bookshelfIncompletedialogueClips, AudioManager.Instance.bookshelfCompletedialogueClips);
                     break;
                 case "WeaponChestTrigger":
                     Debug.Log("Weapon Chest");
+                    StartActivity(5, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips);
                     break;
                 case "FireWoodTrigger":
                     Debug.Log("Firewood");
-                    StartFirePlaceActivity();
+                    StartActivity(4, AudioManager.Instance.fireWoodIncompletedialogueClips, AudioManager.Instance.fireWoodCompletedialogueClips);
                     break;
                 case "PlantTrigger":
                     Debug.Log("Plant");
+                    StartActivity(2, AudioManager.Instance.plantIncompletedialogueClips, AudioManager.Instance.plantCompletedialogueClips);
                     break;
                 case "DishesTrigger":
                     Debug.Log("Dishes");
+                    StartActivity(2, AudioManager.Instance.dishesIncompletedialogueClips, AudioManager.Instance.dishesCompletedialogueClips);
                     break;
                 case "WeaponRackTrigger":
                     Debug.Log("WeaponRack");
+                    StartActivity(3, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips);
                     break;
             }
         }
@@ -73,7 +78,7 @@ public class TriggerBehanviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StopFirePlaceActivity();
+            StopActivity();
             ChangeNpcBehaviour(exit);
         }
     }
@@ -91,28 +96,28 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
-    private void StartFirePlaceActivity()
+    private void StartActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
     {
-        if (firePlaceCoroutine == null)
+        if (activityCoroutine == null)
         {
-            firePlaceCoroutine = StartCoroutine(FirePlaceActivityCoroutine());
+            activityCoroutine = StartCoroutine(ActivityCoroutine(waypointIndex, activityDialogueIncomplete, activityDialogueComplete));
         }
     }
 
-    private void StopFirePlaceActivity()
+    private void StopActivity()
     {
-        if (firePlaceCoroutine != null)
+        if (activityCoroutine != null)
         {
-            StopCoroutine(firePlaceCoroutine);
-            firePlaceCoroutine = null;
+            StopCoroutine(activityCoroutine);
+            activityCoroutine = null;
         }
     }
 
-    private IEnumerator FirePlaceActivityCoroutine()
+    private IEnumerator ActivityCoroutine(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
     {
         while (true)
         {
-            npcBehaviour.FirePlaceActivity();
+            npcBehaviour.NPCHelpingActivity(waypointIndex, activityDialogueIncomplete, activityDialogueComplete);
 
             // Wait for the next frame
             yield return null;

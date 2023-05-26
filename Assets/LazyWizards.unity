@@ -9017,10 +9017,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSource: {fileID: 1060449791}
-  dialogueClips:
-  - {fileID: 8300000, guid: 82bbe26ffd8ca74478b181aeeb420270, type: 3}
-  - {fileID: 8300000, guid: d5a7b32ec2da7e547978bac8a043911c, type: 3}
-  - {fileID: 8300000, guid: 8c927191c1c1c5647abdba0e47f469ea, type: 3}
+  bookshelfCompletedialogueClips: []
+  bookshelfIncompletedialogueClips: []
+  weaponChestCompletedialogueClips: []
+  weaponChestIncompletedialogueClips: []
+  fireWoodCompletedialogueClips: []
+  fireWoodIncompletedialogueClips: []
+  plantCompletedialogueClips: []
+  plantIncompletedialogueClips: []
+  dishesCompletedialogueClips: []
+  dishesIncompletedialogueClips: []
+  weaponRackCompletedialogueClips: []
+  weaponRackIncompletedialogueClips: []
 --- !u!4 &1060449793
 Transform:
   m_ObjectHideFlags: 0
@@ -10474,7 +10482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252980150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.18, y: 0.647, z: -6.53}
+  m_LocalPosition: {x: -2.76, y: 0.647, z: -6.53}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13942,7 +13950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524258169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.1, y: 0.647, z: -7.43}
+  m_LocalPosition: {x: -7.56, y: 0.647, z: -6.46}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

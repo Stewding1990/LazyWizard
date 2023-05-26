@@ -17,6 +17,7 @@ public class Levitationspell : MonoBehaviour
     private Vector3 previousPosition;
     private Rigidbody selectedObjectRigidbody;
     public LayerMask levitateLayer;
+    private bool isObjectSelected = false;
 
     // Smoothness variables
     public float smoothing = 40.0f;
@@ -39,59 +40,68 @@ public class Levitationspell : MonoBehaviour
         {
             if (OVRInput.Get(spellButton))
             {
-                RaycastHit hit;
-
-                if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit, 50f, levitateLayer))
+                if (!isObjectSelected)
                 {
-                    selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
-                    if (selectedObjectRigidbody != null)
+
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit, 50f, levitateLayer))
                     {
-                        // Calculate the target position for smooth movement
-                        Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
-
-                        // Check if the distance to the wand is over the threshold
-                        float distanceToWand = Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position);
-
-                        // Check if the Y button is pressed
-                        if (OVRInput.Get(distanceControlButton))
+                        selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
+                        if (selectedObjectRigidbody != null)
                         {
-                            Debug.Log("Its the right button");
-                            if (distanceToWand < maxDistanceToWand)
+                            // Calculate the target position for smooth movement
+                            Vector3 targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
+
+                            // Check if the distance to the wand is over the threshold
+                            float distanceToWand = Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position);
+
+                            // Check if the Y button is pressed
+                            if (OVRInput.Get(distanceControlButton))
                             {
-                                // Increase the distance to the wand
-                                currentDistanceToWand.z += distanceChangeSpeed * Time.deltaTime;
-                                currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
-                                Debug.Log(currentDistanceToWand.z);
+                                Debug.Log("Its the right button");
+                                if (distanceToWand < maxDistanceToWand)
+                                {
+                                    // Increase the distance to the wand
+                                    currentDistanceToWand.z += distanceChangeSpeed * Time.deltaTime;
+                                    currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
+                                    Debug.Log(currentDistanceToWand.z);
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (distanceToWand > minDistanceToWand)
+                            else
                             {
-                                // Decrease the distance to the wand
-                                currentDistanceToWand.z -= distanceChangeSpeed * Time.deltaTime;
-                                currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
+                                if (distanceToWand > minDistanceToWand)
+                                {
+                                    // Decrease the distance to the wand
+                                    currentDistanceToWand.z -= distanceChangeSpeed * Time.deltaTime;
+                                    currentDistanceToWand.z = Mathf.Clamp(currentDistanceToWand.z, minDistanceToWand, maxDistanceToWand);
+                                }
                             }
+
+                            // Disable gravity for the selected object
+                            selectedObjectRigidbody.useGravity = false;
+
+                            // Calculate the new target position based on the adjusted distance
+                            targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
+
+                            // Smoothly move the object towards the target position
+                            selectedObjectRigidbody.MovePosition(Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, smoothing * Time.deltaTime));
                         }
-
-                        // Disable gravity for the selected object
-                        selectedObjectRigidbody.useGravity = false;
-
-                        // Calculate the new target position based on the adjusted distance
-                        targetPosition = wandTip.transform.position + wandTip.transform.forward * currentDistanceToWand.z;
-
-                        // Smoothly move the object towards the target position
-                        selectedObjectRigidbody.MovePosition(Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, smoothing * Time.deltaTime));
                     }
+
                 }
                 else
                 {
-                    // Re-enable gravity for the selected object
-                    if (selectedObjectRigidbody != null)
+                    if (isObjectSelected)
                     {
-                        selectedObjectRigidbody.useGravity = true;
-                        selectedObjectRigidbody = null;
+                        // Re-enable gravity for the selected object
+                        if (selectedObjectRigidbody != null)
+                        {
+                            selectedObjectRigidbody.useGravity = true;
+                            selectedObjectRigidbody = null;
+                        }
                     }
+
                 }
             }
         }

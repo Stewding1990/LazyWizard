@@ -8,7 +8,29 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource dialogueSource; // AudioSource for playing dialogue clips
 
-    public AudioClip[] dialogueClips; // Array of dialogue audio clips
+    [Header("Bookshelf Activity Dialogue Scripts")]
+    public AudioClip[] bookshelfCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] bookshelfIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("WeaponChest Activity Dialogue Scripts")]
+    public AudioClip[] weaponChestCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] weaponChestIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("FireWood Activity Dialogue Scripts")]
+    public AudioClip[] fireWoodCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] fireWoodIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("Plant Activity Dialogue Scripts")]
+    public AudioClip[] plantCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] plantIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("Dishes Activity Dialogue Scripts")]
+    public AudioClip[] dishesCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] dishesIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("WeaponRack Activity Dialogue Scripts")]
+    public AudioClip[] weaponRackCompletedialogueClips; // Array of dialogue audio clips
+    public AudioClip[] weaponRackIncompletedialogueClips; // Array of dialogue audio clips
 
     private void Awake()
     {
@@ -31,7 +53,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play a random dialogue clip
-    public void PlayRandomDialogueClip()
+    public void PlayRandomDialogueClip(AudioClip[] dialogueClips)
     {
         if (dialogueClips.Length > 0)
         {
@@ -48,5 +70,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No dialogue clips assigned to AudioManager.");
         }
     }
+
 
 }
