@@ -12,14 +12,14 @@ public class Pour2 : MonoBehaviour
     public GameObject originTop;
     public GameObject originBottom;
 
-    public GameObject waterTrigger;
+    //public GameObject waterTrigger;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        waterTrigger.SetActive(false);
+        //waterTrigger.SetActive(false);
 
         spark.Stop();
         Wlight.Stop();
@@ -35,7 +35,7 @@ public class Pour2 : MonoBehaviour
 
             if (originTop.transform.position.y < originBottom.transform.position.y)
             {
-                waterTrigger.SetActive(false);
+                //waterTrigger.SetActive(false);
                 
 
                 RaycastHit hit;
@@ -76,7 +76,7 @@ public class Pour2 : MonoBehaviour
             }
             else
             {
-                waterTrigger.SetActive(false);
+               // waterTrigger.SetActive(false);
                 drip.Stop();
             }
            
