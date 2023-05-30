@@ -9,7 +9,7 @@ public class Bookshelf : MonoBehaviour
     public GameObject IncompleteCandles;
     public GameObject CompleteCandles;
 
-    private bool booksReady = false;
+    private int filledShelfCount = 0;
     private bool BookshelfComplete = false;
     private int nextBookIndex = 0;
 
@@ -25,7 +25,6 @@ public class Bookshelf : MonoBehaviour
             book.transform.rotation = shelfLocation.transform.rotation;
             book.GetComponent<Rigidbody>().isKinematic = true;
 
-            // Disable the collider to make the book unmovable
             book.GetComponent<Collider>().enabled = false;
 
             bookObjects[index] = null;
@@ -33,26 +32,22 @@ public class Bookshelf : MonoBehaviour
 
             CheckBooksReady();
         }
-        else if (booksReady)
+        else if (BookshelfComplete)
         {
             //bookstackEffect.SetActive(true);
             IncompleteCandles.SetActive(false);
             CompleteCandles.SetActive(true);
-            BookshelfComplete = true;
         }
     }
 
     private void CheckBooksReady()
     {
-        foreach (GameObject book in bookObjects)
-        {
-            if (book != null)
-            {
-                return;
-            }
-        }
+        filledShelfCount++;
 
-        booksReady = true;
-        // Perform any desired actions when all books are stacked on the bookshelf
+        if (filledShelfCount == shelfLocations.Count)
+        {
+            BookshelfComplete = true;
+            // Perform any desired actions when all three game objects are filled
+        }
     }
 }
