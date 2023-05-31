@@ -7,10 +7,12 @@ public class WandSwitch : MonoBehaviour
     public GameObject wandParrent;
     public float moveRange = 1.0f; 
     public float moveSpeed = 1.0f;
-    public ParticleSystem wind;
+    //public ParticleSystem wind;
 
     public GameObject waterWand;
     public GameObject lightWand;
+    public GameObject wand;
+    
     //public GameObject fireWand;
     //public GameObject levitationWand;
 
@@ -25,6 +27,8 @@ public class WandSwitch : MonoBehaviour
 
         waterWand.SetActive(true);
         lightWand.SetActive(false);
+        wand.GetComponent<Levitationspell>().enabled = false;
+        wand.GetComponent<FireballWand>().enabled = false;
     }
 
     // Update is called once per frame
@@ -45,11 +49,11 @@ public class WandSwitch : MonoBehaviour
 
             // Update the position of the GameObject with the random offset
             wandParrent.transform.position = currentPos + new Vector3(xOffset, yOffset, zOffset);
-            wind.Play();
+            //wind.Play();
         }
         else
         {
-            wind.Stop();
+            //wind.Stop();
         }
 
         
@@ -59,31 +63,31 @@ public class WandSwitch : MonoBehaviour
     {
         waterWand.SetActive(true);
         lightWand.SetActive(false);
-        //fireWand.SetActive(false);
-        //levitationWand.SetActive(false);
+        wand.GetComponent<Levitationspell>().enabled = false;
+        wand.GetComponent<FireballWand>().enabled = false;
     }
 
     public void LightWandSet()
     {
         waterWand.SetActive(false);
         lightWand.SetActive(true);
-        //fireWand.SetActive(false);
-        //levitationWand.SetActive(false);
+        wand.GetComponent<Levitationspell>().enabled = false;
+        wand.GetComponent<FireballWand>().enabled = false;
     }
 
     public void LevitationWandSet()
     {
         waterWand.SetActive(false);
         lightWand.SetActive(false);
-        //fireWand.SetActive(false);
-        //levitationWand.SetActive(true);
+        wand.GetComponent<Levitationspell>().enabled = true;
+        wand.GetComponent<FireballWand>().enabled = false;
     }
 
     public void FireWandSet()
     {
         waterWand.SetActive(false);
         lightWand.SetActive(false);
-        //fireWand.SetActive(true);
-        //levitationWand.SetActive(false);
+        wand.GetComponent<Levitationspell>().enabled = false;
+        wand.GetComponent<FireballWand>().enabled = true;
     }
 }
