@@ -20,6 +20,7 @@ TagManager:
   - Plant3
   - Plant4
   - WhiteBoard
+  - Marker
   layers:
   - Default
   - TransparentFX
