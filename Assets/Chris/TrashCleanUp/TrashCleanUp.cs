@@ -4,34 +4,33 @@ using UnityEngine;
 public class TrashCleanUp : MonoBehaviour
 {
     public List<GameObject> trashList = new List<GameObject>();
+    public string fireballTag = "Fireball";
     public bool trashCleaned = false;
     public bool trashDestroyed = false;
     public GameObject objectToDeactivate;
     public GameObject objectToActivate;
+    public GameObject FireToActivate;
+    public LayerMask defaultLayer;
 
     private List<GameObject> trashItemsInCollider = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Fireball"))
+        if (other.CompareTag(fireballTag))
         {
-            foreach (GameObject trashItem in trashItemsInCollider)
-            {
-                if (trashItem.activeSelf)
-                    trashItem.SetActive(false);
-            }
-
-            if (AllTrashItemsInactive())
+            if (AllTrashItemsInCollider())
             {
                 trashDestroyed = true;
                 objectToDeactivate.SetActive(false);
                 objectToActivate.SetActive(true);
+                FireToActivate.SetActive(true);
             }
         }
         else if (trashList.Contains(other.gameObject))
         {
             trashItemsInCollider.Add(other.gameObject);
             trashCleaned = (trashItemsInCollider.Count == trashList.Count);
+            other.gameObject.layer = defaultLayer;
         }
     }
 
@@ -44,14 +43,14 @@ public class TrashCleanUp : MonoBehaviour
         }
     }
 
-    private bool AllTrashItemsInactive()
+    private bool AllTrashItemsInCollider()
     {
         foreach (GameObject trashItem in trashList)
         {
-            if (trashItem.activeSelf)
+            if (!trashItemsInCollider.Contains(trashItem))
                 return false;
         }
 
-        return true;
+        return trashItemsInCollider.Count == trashList.Count;
     }
 }

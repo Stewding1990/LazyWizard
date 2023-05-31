@@ -18,36 +18,52 @@ public class Bookshelf : MonoBehaviour
         if (bookObjects.Contains(other.gameObject))
         {
             int index = bookObjects.IndexOf(other.gameObject);
-            GameObject book = bookObjects[index];
-            GameObject shelfLocation = shelfLocations[nextBookIndex];
 
-            book.transform.position = shelfLocation.transform.position;
-            book.transform.rotation = shelfLocation.transform.rotation;
-            book.GetComponent<Rigidbody>().isKinematic = true;
+            if (index < shelfLocations.Count)
+            {
+                GameObject book = bookObjects[index];
+                GameObject shelfLocation = shelfLocations[index];
 
-            book.GetComponent<Collider>().enabled = false;
+                book.transform.position = shelfLocation.transform.position;
+                book.transform.rotation = shelfLocation.transform.rotation;
+                book.GetComponent<Rigidbody>().isKinematic = true;
 
-            bookObjects[index] = null;
-            nextBookIndex++;
+                book.GetComponent<Collider>().enabled = false;
 
-            CheckBooksReady();
+                bookObjects[index] = null;
+                filledShelfCount++;
+
+                CheckBooksReady();
+            }
         }
         else if (BookshelfComplete)
         {
             //bookstackEffect.SetActive(true);
-            IncompleteCandles.SetActive(false);
-            CompleteCandles.SetActive(true);
+            //IncompleteCandles.SetActive(false);
+            //CompleteCandles.SetActive(true);
         }
     }
 
     private void CheckBooksReady()
     {
-        filledShelfCount++;
+        int placedBookCount = 0;
 
-        if (filledShelfCount == shelfLocations.Count)
+        foreach (GameObject book in bookObjects)
+        {
+            if (book == null)
+            {
+                placedBookCount++;
+            }
+        }
+
+        if (placedBookCount == shelfLocations.Count)
         {
             BookshelfComplete = true;
-            // Perform any desired actions when all three game objects are filled
+            // Perform any desired actions when all books are placed on the shelf
+            IncompleteCandles.SetActive(false);
+            CompleteCandles.SetActive(true);
         }
     }
+
+
 }
