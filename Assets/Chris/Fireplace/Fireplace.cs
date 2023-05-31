@@ -25,6 +25,9 @@ public class Fireplace : MonoBehaviour
             firewood.transform.rotation = fireplaceLocation.transform.rotation;
             firewood.GetComponent<Rigidbody>().isKinematic = true;
 
+            // Change the layer of the firewood object to default
+            firewood.layer = LayerMask.NameToLayer("Default");
+
             firewoodObjects[index] = null;
             nextFirewoodIndex++;
 
