@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 45b90a9fdfe2e7541ad18a1cff027b82
+    guid: 3c5e5a9d1554b8548980496157c0a688
   - enabled: 1
     path: Assets/Scenes/LazyWizards.unity
     guid: 80a28ea8bc2a2e141b0d9fb287fa3e1f

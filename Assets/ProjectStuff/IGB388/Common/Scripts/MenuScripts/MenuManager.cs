@@ -9,4 +9,9 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("LazyWizards");
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
