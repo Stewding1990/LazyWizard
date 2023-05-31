@@ -132,6 +132,7 @@ public class Levitationspell : MonoBehaviour
     public void PutDownWand()
     {
         holdingWand = false;
+        wandPickedUp = false;
         Debug.Log(holdingWand);
     }
 }

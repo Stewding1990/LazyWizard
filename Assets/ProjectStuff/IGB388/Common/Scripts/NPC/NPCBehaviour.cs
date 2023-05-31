@@ -190,6 +190,10 @@ public class NPCBehaviour : MonoBehaviour
         isAnimating = false;
     }
 
+    // Declare a variable to track the time
+    private float dialogueTimer = 0f;
+    private float dialogueInterval = 15f; // Interval in seconds
+
     public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
     {
         agent.SetDestination(Waypoints[waypointIndex].transform.position);
@@ -202,19 +206,25 @@ public class NPCBehaviour : MonoBehaviour
 
             if (!dialoguePlayed) // Check if dialogue has already been played
             {
-                // Play random dialogue based on the state of candles
-                if (bookshelfIncompleteCandles.activeSelf)
-                {
-                    Debug.Log("I want to play sound");
-                    AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
-                }
-                else if (bookshelfCompleteCandles.activeSelf)
-                {
-                    Debug.Log("I want to play sound x 2");
-                    AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
-                }
+                dialogueTimer += Time.deltaTime; // Increment the timer
 
-                dialoguePlayed = true; // Set the flag to true
+                // Check if the timer has reached the interval
+                if (dialogueTimer >= dialogueInterval)
+                {
+                    // Play random dialogue based on the state of candles
+                    if (bookshelfIncompleteCandles.activeSelf)
+                    {
+                        Debug.Log("I want to play sound");
+                        AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
+                        ResetDialoguePlayedFlag(); // Reset the flag
+                    }
+                    else if (bookshelfCompleteCandles.activeSelf)
+                    {
+                        Debug.Log("I want to play sound x 2");
+                        AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
+                        ResetDialoguePlayedFlag(); // Reset the flag
+                    }
+                }
             }
         }
         else
@@ -222,6 +232,14 @@ public class NPCBehaviour : MonoBehaviour
             agent.isStopped = false;
         }
     }
+
+    private void ResetDialoguePlayedFlag()
+    {
+        dialoguePlayed = false; // Reset the flag to false
+        dialogueTimer = 0f; // Reset the timer
+    }
+
+
 
 
 
