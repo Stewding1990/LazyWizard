@@ -45,11 +45,7 @@ public class Levitationspell : MonoBehaviour
                 if (selectedObjectRigidbody != null)
                 {
                     Vector3 targetPosition = CalculateTargetPosition();
-                    float distanceToWand = Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position);
-
-                    Debug.Log("Raycast Hit: " + hit.transform.name);
-                    Debug.Log("Hit Point: " + hit.point);
-                    Debug.Log("Hit Normal: " + hit.normal);
+                    float distanceToWand = (Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position) / 2);
 
                     if (OVRInput.Get(distanceControlButton))
                     {
@@ -103,8 +99,12 @@ public class Levitationspell : MonoBehaviour
 
     void MoveObjectTowardsTarget(Vector3 targetPosition)
     {
-        selectedObjectRigidbody.position = Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, smoothing * Time.deltaTime);
+        float movementSpeed = smoothing * Time.deltaTime;
+        selectedObjectRigidbody.position = Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, movementSpeed);
     }
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {

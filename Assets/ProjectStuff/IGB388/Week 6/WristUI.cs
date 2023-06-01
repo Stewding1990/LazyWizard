@@ -19,10 +19,6 @@ public class WristUI : MonoBehaviour
         float dotProduct = Vector3.Dot(Camera.main.transform.forward, transform.forward);
         wristCanvas.enabled = (dotProduct > requiredSimilarity);
 
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
-        {
-            RestartLevel();
-        }
 
     }
 

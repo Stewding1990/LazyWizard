@@ -29,7 +29,7 @@ public class Pour : MonoBehaviour
         bool pourCheck = calculatePouringAngle() < pourThreshold;
 
 
-        if (OVRInput.Get(OVRInput.RawButton.A))
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
         {
             spark.Play();
             Wlight.Play();

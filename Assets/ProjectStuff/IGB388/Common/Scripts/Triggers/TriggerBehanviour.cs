@@ -48,27 +48,33 @@ public class TriggerBehanviour : MonoBehaviour
             {
                 case "BookshelfTrigger":
                     Debug.Log("Bookshelf");
-                    StartActivity(0, AudioManager.Instance.bookshelfIncompletedialogueClips, AudioManager.Instance.bookshelfCompletedialogueClips);
+                    StartActivity(0, AudioManager.Instance.bookshelfIncompletedialogueClips, AudioManager.Instance.bookshelfCompletedialogueClips,
+                        npcBehaviour.bookshelfIncompleteCandles, npcBehaviour.bookshelfCompleteCandles);
                     break;
                 case "WeaponChestTrigger":
                     Debug.Log("Weapon Chest");
-                    StartActivity(5, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips);
+                    StartActivity(5, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips,
+                        npcBehaviour.trashBinIncompleteCandles, npcBehaviour.trashBinCompleteCandles);
                     break;
                 case "FireWoodTrigger":
                     Debug.Log("Firewood");
-                    StartActivity(4, AudioManager.Instance.fireWoodIncompletedialogueClips, AudioManager.Instance.fireWoodCompletedialogueClips);
+                    StartActivity(4, AudioManager.Instance.fireWoodIncompletedialogueClips, AudioManager.Instance.fireWoodCompletedialogueClips,
+                        npcBehaviour.firePlaceIncompleteCandles, npcBehaviour.firePlaceCompleteCandles);
                     break;
                 case "PlantTrigger":
                     Debug.Log("Plant");
-                    StartActivity(2, AudioManager.Instance.plantIncompletedialogueClips, AudioManager.Instance.plantCompletedialogueClips);
+                    StartActivity(2, AudioManager.Instance.plantIncompletedialogueClips, AudioManager.Instance.plantCompletedialogueClips,
+                        npcBehaviour.plantIncompleteCandles, npcBehaviour.plantCompleteCandles);
                     break;
                 case "DishesTrigger":
                     Debug.Log("Dishes");
-                    StartActivity(2, AudioManager.Instance.dishesIncompletedialogueClips, AudioManager.Instance.dishesCompletedialogueClips);
+                    StartActivity(2, AudioManager.Instance.dishesIncompletedialogueClips, AudioManager.Instance.dishesCompletedialogueClips,
+                        npcBehaviour.dishesIncompleteCandles, npcBehaviour.dishesCompleteCandles);
                     break;
                 case "WeaponRackTrigger":
                     Debug.Log("WeaponRack");
-                    StartActivity(3, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips);
+                    StartActivity(3, AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips,
+                        npcBehaviour.weaponStandIncompleteCandles, npcBehaviour.weaponStandCompleteCandles);
                     break;
             }
         }
@@ -96,11 +102,11 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
-    private void StartActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
+    private void StartActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
         if (activityCoroutine == null)
         {
-            activityCoroutine = StartCoroutine(ActivityCoroutine(waypointIndex, activityDialogueIncomplete, activityDialogueComplete));
+            activityCoroutine = StartCoroutine(ActivityCoroutine(waypointIndex, activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles));
         }
     }
 
@@ -113,11 +119,11 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
-    private IEnumerator ActivityCoroutine(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
+    private IEnumerator ActivityCoroutine(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
         while (true)
         {
-            npcBehaviour.NPCHelpingActivity(waypointIndex, activityDialogueIncomplete, activityDialogueComplete);
+            npcBehaviour.NPCHelpingActivity(waypointIndex, activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles);
 
             // Wait for the next frame
             yield return null;

@@ -18,7 +18,6 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class TeleportTargetHandlerPhysical : TeleportTargetHandler
 {
-
 	/// <summary>
 	/// This method will be called while the LocmotionTeleport component is in the aiming state, once for each
 	/// line segment that the targeting beam requires. 

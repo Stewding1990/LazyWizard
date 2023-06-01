@@ -26,10 +26,22 @@ public class NPCBehaviour : MonoBehaviour
     private Animator animator;
     public AnimationClip[] ownThingAnimations;
     private float[] animationDurations; // Array to store animation clip durations
+    public string isTalking = "isTalking";
 
     [Header("Candles for Each activity")]
     public GameObject bookshelfIncompleteCandles;
     public GameObject bookshelfCompleteCandles;
+    public GameObject firePlaceIncompleteCandles;
+    public GameObject firePlaceCompleteCandles;
+    public GameObject trashBinIncompleteCandles;
+    public GameObject trashBinCompleteCandles;
+    public GameObject weaponStandCompleteCandles;
+    public GameObject weaponStandIncompleteCandles;
+    public GameObject dishesCompleteCandles;
+    public GameObject dishesIncompleteCandles;
+    public GameObject plantCompleteCandles;
+    public GameObject plantIncompleteCandles;
+
     private bool dialoguePlayed = false; // Flag to track if dialogue has been played
 
 
@@ -78,6 +90,11 @@ public class NPCBehaviour : MonoBehaviour
     private void ChangeState()
     {
         currentState = newState;
+    }
+
+    public void ActivateAnimation()
+    {
+        animator.SetTrigger(isTalking);
     }
 
     private void WalkingAround()
@@ -192,13 +209,13 @@ public class NPCBehaviour : MonoBehaviour
 
     // Declare a variable to track the time
     private float dialogueTimer = 0f;
-    private float dialogueInterval = 15f; // Interval in seconds
+    private float dialogueInterval = 5f; // Interval in seconds
 
-    public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete)
+    public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
         agent.SetDestination(Waypoints[waypointIndex].transform.position);
 
-        if (Vector3.Distance(agent.transform.position, Waypoints[4].transform.position) < 2f)
+        if (Vector3.Distance(agent.transform.position, Waypoints[waypointIndex].transform.position) < 2f)
         {
             Debug.Log("here");
             agent.isStopped = true;
@@ -207,6 +224,7 @@ public class NPCBehaviour : MonoBehaviour
             if (!dialoguePlayed) // Check if dialogue has already been played
             {
                 dialogueTimer += Time.deltaTime; // Increment the timer
+                Debug.Log(dialogueTimer);
 
                 // Check if the timer has reached the interval
                 if (dialogueTimer >= dialogueInterval)
@@ -216,12 +234,14 @@ public class NPCBehaviour : MonoBehaviour
                     {
                         Debug.Log("I want to play sound");
                         AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
+                        ActivateAnimation();
                         ResetDialoguePlayedFlag(); // Reset the flag
                     }
                     else if (bookshelfCompleteCandles.activeSelf)
                     {
                         Debug.Log("I want to play sound x 2");
                         AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
+                        ActivateAnimation();
                         ResetDialoguePlayedFlag(); // Reset the flag
                     }
                 }
@@ -235,6 +255,7 @@ public class NPCBehaviour : MonoBehaviour
 
     private void ResetDialoguePlayedFlag()
     {
+        Debug.Log("Too early");
         dialoguePlayed = false; // Reset the flag to false
         dialogueTimer = 0f; // Reset the timer
     }

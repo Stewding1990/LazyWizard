@@ -23,14 +23,14 @@ public class lightAction : MonoBehaviour
     void Update()
     {
 
-        if (OVRInput.GetDown(OVRInput.RawButton.B))
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             lighteffectGO.SetActive(true);
             lightEffect.Play();
             lightTrigger.SetActive(true);
 
         }
-        if (OVRInput.GetUp(OVRInput.RawButton.B))
+        if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
         {
             lighteffectGO.SetActive(false);
             lightEffect.Stop();

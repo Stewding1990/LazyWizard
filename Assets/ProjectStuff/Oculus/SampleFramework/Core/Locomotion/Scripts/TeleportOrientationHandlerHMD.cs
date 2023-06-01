@@ -47,19 +47,19 @@ public class TeleportOrientationHandlerHMD : TeleportOrientationHandler
 
 	protected override void UpdateTeleportDestination()
 	{
-		var t = LocomotionTeleport.LocomotionController.CameraRig.centerEyeAnchor;
-		var destination = AimData.Destination.GetValueOrDefault();
-
 		// Only update the orientation during preteleport, or if configured to do updates during aim.
 		if (AimData.Destination.HasValue && (UpdateOrientationDuringAim || LocomotionTeleport.CurrentState == LocomotionTeleport.States.PreTeleport))
 		{
+			var t = LocomotionTeleport.LocomotionController.CameraRig.centerEyeAnchor;
+			var destination = AimData.Destination.GetValueOrDefault(); 
+
 			// create a plane that contains the destination, with the normal pointing to the HMD.
 			var plane = new Plane(Vector3.up, destination);
 
 			// find the point on the plane that the HMD is looking at.
 			float d;
 			bool hit = plane.Raycast(new Ray(t.position, t.forward), out d);
-			if (hit && false == true)
+			if (hit)
 			{
 				var target = t.position + t.forward * d;
 				var local = target - destination;
@@ -85,23 +85,11 @@ public class TeleportOrientationHandlerHMD : TeleportOrientationHandler
 						AimData.TargetValid = false;
 					}
 
-					//LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot, GetLandingOrientation(OrientationMode, rot));
-					
-					
-					
-					//LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot, rot);
+					LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot, GetLandingOrientation(OrientationMode, rot));
 					return;
 				}
 			}
-
-			var rot2 = Quaternion.LookRotation(new Vector3(t.forward.x, 0, t.forward.z), Vector3.up);
-			LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot2, rot2);
 		}
-		//LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, _initialRotation, GetLandingOrientation(OrientationMode, _initialRotation));
-
-
-		var rot3 = Quaternion.LookRotation(new Vector3(t.forward.x, 0, t.forward.z), Vector3.up);
-		LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, rot3, rot3);
-		//LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, _initialRotation, _initialRotation);
+		LocomotionTeleport.OnUpdateTeleportDestination(AimData.TargetValid, AimData.Destination, _initialRotation, GetLandingOrientation(OrientationMode, _initialRotation));
 	}
 }

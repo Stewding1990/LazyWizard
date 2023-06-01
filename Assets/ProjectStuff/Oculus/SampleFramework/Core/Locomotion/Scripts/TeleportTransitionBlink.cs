@@ -27,14 +27,6 @@ public class TeleportTransitionBlink : TeleportTransition
 	/// <summary>
 	/// At what percentage of the elapsed transition time does the teleport occur?
 	/// </summary>
-	[Tooltip("How long should the screen stay black?")]
-	[Range(0.0f, 1.0f)]
-	public float StayFadedTime = 0.1f;
-
-
-	/// <summary>
-	/// At what percentage of the elapsed transition time does the teleport occur?
-	/// </summary>
 	[Tooltip("At what percentage of the elapsed transition time does the teleport occur?")]
 	[Range(0.0f,1.0f)]
 	public float TeleportDelay = 0.5f;
@@ -62,21 +54,9 @@ public class TeleportTransitionBlink : TeleportTransition
 	protected IEnumerator BlinkCoroutine()
 	{
 		LocomotionTeleport.IsTransitioning = true;
-		//float elapsedTime = 0;
+		float elapsedTime = 0;
 		var teleportTime = TransitionDuration * TeleportDelay;
-		//var teleported = false;
-
-
-
-		OVRScreenFade.instance.fadeTime = TransitionDuration;
-		OVRScreenFade.instance.FadeOut();
-		yield return new WaitForSeconds(TransitionDuration);
-		yield return new WaitForSeconds(StayFadedTime / 2f);
-		LocomotionTeleport.DoTeleport();
-		yield return new WaitForSeconds(StayFadedTime / 2f);
-		OVRScreenFade.instance.FadeIn();
-
-		/*
+		var teleported = false;
 		while (elapsedTime < TransitionDuration)
 		{
 			yield return null;
@@ -86,11 +66,10 @@ public class TeleportTransitionBlink : TeleportTransition
 				teleported = true;
 				LocomotionTeleport.DoTeleport();
 			}
-			
 			//float fadeLevel = FadeLevels.Evaluate(elapsedTime / TransitionDuration);
 			//OVRInspector.instance.fader.SetFadeLevel(fadeLevel);
 		}
-		*/
+
 		//OVRInspector.instance.fader.SetFadeLevel(0);
 
 		LocomotionTeleport.IsTransitioning = false;
