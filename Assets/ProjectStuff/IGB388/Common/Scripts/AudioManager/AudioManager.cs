@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance; // Singleton instance
 
     public AudioSource dialogueSource; // AudioSource for playing dialogue clips
+    public AudioSource loopingSoundEffectSource; // AudioSource for playing dialogue clips
 
     [Header("Bookshelf Activity Dialogue Scripts")]
     public AudioClip[] bookshelfCompletedialogueClips; // Array of dialogue audio clips
@@ -31,6 +32,23 @@ public class AudioManager : MonoBehaviour
     [Header("WeaponRack Activity Dialogue Scripts")]
     public AudioClip[] weaponRackCompletedialogueClips; // Array of dialogue audio clips
     public AudioClip[] weaponRackIncompletedialogueClips; // Array of dialogue audio clips
+
+    [Header("Sound effect clips")]
+    public AudioClip levitationSFX;
+    public AudioClip fireSpellSFX;
+    public AudioClip waterSpellSFX;
+    public AudioClip sunSpellSFX;
+
+    [Header("Menu UI SFX")]
+    public AudioClip PauseSFX;
+    public AudioClip unPauseSFX;
+    public AudioClip clickButton;
+
+    [Header("Bookshelf SFX")]
+    public AudioClip bookshelfSFX;
+
+    [Header("NPC SFX")]
+    public AudioClip walkingSFX;
 
     private void Awake()
     {
@@ -71,5 +89,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySoundEffect(AudioClip soundEffectClip)
+    {
+        if (soundEffectClip != null)
+        {
+            Debug.Log("Playing sound effect: " + soundEffectClip.name);
+            dialogueSource.PlayOneShot(soundEffectClip);
+        }
+        else
+        {
+            Debug.LogWarning("Sound effect clip is null.");
+        }
+    }
+    public void PlayLoopingSoundEffect(AudioClip loopingSoundEffectClip)
+    {
+        loopingSoundEffectSource.clip = loopingSoundEffectClip;
+        loopingSoundEffectSource.loop = true;
+        loopingSoundEffectSource.Play();
+    }
+
+    public void StopLoopingSoundEffect()
+    {
+        loopingSoundEffectSource.Stop();
+    }
 
 }

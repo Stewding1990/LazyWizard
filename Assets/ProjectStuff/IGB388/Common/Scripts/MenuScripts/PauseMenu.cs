@@ -6,16 +6,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     private bool isPaused = false;
     public OVRInput.Button pauseButton;
-    public GameObject Player;
-    public GameObject PauseMenuHolder;
 
     private void Update()
     {
-        PauseMenuHolder.transform.LookAt(Player.transform);
 
         if (OVRInput.Get(pauseButton)) // Use the appropriate input for Oculus
         {
-            Debug.Log("Im here");
             if (isPaused)
                 Resume();
             else
@@ -25,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.unPauseSFX);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -33,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.PauseSFX);
         Time.timeScale = 0f;
         isPaused = true;
     }

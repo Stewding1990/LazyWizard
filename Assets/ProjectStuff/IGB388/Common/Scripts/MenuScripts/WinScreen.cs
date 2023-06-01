@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
@@ -36,5 +37,18 @@ public class WinScreen : MonoBehaviour
     private void ActivateWinScreen()
     {
         winScreen.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        // Get the current scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Load the current scene
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

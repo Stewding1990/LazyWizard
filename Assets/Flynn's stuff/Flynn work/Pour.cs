@@ -41,6 +41,7 @@ public class Pour : MonoBehaviour
                 if (pouring)
                 {
                     StartPour();
+                    AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.waterSpellSFX);
 
                     waterTrigger.SetActive(true);
                 }

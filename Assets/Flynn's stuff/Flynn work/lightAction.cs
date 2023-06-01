@@ -27,6 +27,7 @@ public class lightAction : MonoBehaviour
         {
             lighteffectGO.SetActive(true);
             lightEffect.Play();
+            AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.sunSpellSFX);
             lightTrigger.SetActive(true);
 
         }

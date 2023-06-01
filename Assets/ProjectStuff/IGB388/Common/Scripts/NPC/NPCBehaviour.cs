@@ -64,7 +64,17 @@ public class NPCBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isWalking", agent.velocity.magnitude > 0.15);
+        if(agent.velocity.magnitude > 0.15)
+        {
+            animator.SetBool("isWalking", true);
+            AudioManager.Instance.PlayLoopingSoundEffect(AudioManager.Instance.walkingSFX);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+            AudioManager.Instance.StopLoopingSoundEffect();
+        }
+       
         ChangeState();
 
         // Lookup state switch
@@ -209,7 +219,7 @@ public class NPCBehaviour : MonoBehaviour
 
     // Declare a variable to track the time
     private float dialogueTimer = 0f;
-    private float dialogueInterval = 5f; // Interval in seconds
+    private float dialogueInterval = 12f; // Interval in seconds
 
     public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {

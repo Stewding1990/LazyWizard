@@ -68,6 +68,7 @@ public class Levitationspell : MonoBehaviour
 
                     targetPosition = CalculateTargetPosition();
                     MoveObjectTowardsTarget(targetPosition);
+                    AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.levitationSFX);
 
                     Debug.DrawRay(wandTip.transform.position, wandTip.transform.forward * maxRaycastDistance, Color.red);
                 }
