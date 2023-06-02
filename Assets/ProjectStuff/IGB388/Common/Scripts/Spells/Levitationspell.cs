@@ -26,6 +26,9 @@ public class Levitationspell : MonoBehaviour
     public float distanceThreshold = 0.2f;
     private float maxRaycastDistance = 50f;
 
+    public float VibDuration;
+    public float VibStrength;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -38,9 +41,12 @@ public class Levitationspell : MonoBehaviour
     {
         if (holdingWand && OVRInput.Get(spellButton))
         {
+
             RaycastHit hit;
             if (Physics.Raycast(wandTip.transform.position, wandTip.transform.forward, out hit, maxRaycastDistance, levitateLayer))
             {
+                SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
+
                 selectedObjectRigidbody = hit.transform.GetComponent<Rigidbody>();
                 if (selectedObjectRigidbody != null)
                 {
@@ -79,6 +85,7 @@ public class Levitationspell : MonoBehaviour
         {
             // Spell button is not pressed, release the object and enable gravity
             ReleaseObject();
+            SimpleHapticVibrationManager.VibrateController(0f, 0f, OVRInput.Controller.RTouch);
         }
     }
 

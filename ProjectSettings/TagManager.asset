@@ -21,6 +21,14 @@ TagManager:
   - Plant4
   - WhiteBoard
   - Marker
+  - SamplesInfoPanel
+  - spoon1
+  - plate1
+  - plate2
+  - cuttingboard
+  - spoon2
+  - bowl1
+  - bowl2
   layers:
   - Default
   - TransparentFX
