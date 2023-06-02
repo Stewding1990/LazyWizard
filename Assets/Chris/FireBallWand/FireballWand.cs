@@ -17,20 +17,43 @@ public class FireballWand : MonoBehaviour
     public OVRInput.Button spellButtonL;
     public OVRInput.Button spellButtonR;
 
+    public float VibDuration;
+    public float VibStrength;
+    //.3
+    //1
+
     void Update()
     {
         // Check if the left index trigger is pressed while the controller is in contact with the left hand detection point
         if (OVRInput.GetDown(spellButtonL) && IsColliding(leftHandDetection))
         {
             ShootFireball();
+
         }
 
         // Check if the right index trigger is pressed while the controller is in contact with the right hand detection point
         if (OVRInput.GetDown(spellButtonR) && IsColliding(rightHandDetection))
         {
+
             ShootFireball();
+
+            //works
+            //SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
+            //doesntwork
+            //OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+            //SimpleHapticVibrationManager.VibrateController(0.3f, 1.0f, OVRInput.Controller.RTouch);
+            //VibrateController(.5f, .5f, OVRInput.Controller.RTouch);
         }
     }
+
+
+    public IEnumerator VibrateController(float duration, float strength, OVRInput.Controller controller)
+    {
+        OVRInput.SetControllerVibration(0.01f, strength, controller);
+        yield return new WaitForSeconds(duration);
+        OVRInput.SetControllerVibration(0.01f, 0, controller);
+    }
+
 
     bool IsColliding(GameObject detectionPoint)
     {
@@ -50,6 +73,7 @@ public class FireballWand : MonoBehaviour
     {
         if (canShoot)
         {
+            SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
             // Get the forward direction of the fireball spawn point
             Vector3 fireballDirection = fireballSpawnPoint.forward;
 
