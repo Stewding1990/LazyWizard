@@ -9936,6 +9936,8 @@ MonoBehaviour:
   minDistanceToWand: 0.5
   maxDistanceToWand: 5
   distanceThreshold: 0.2
+  VibDuration: 0
+  VibStrength: 0
 --- !u!114 &696382525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17603,7 +17605,7 @@ MonoBehaviour:
   m_allowOffhandGrab: 1
   m_snapPosition: 0
   m_snapOrientation: 0
-  m_snapOffset: {fileID: 1637978875}
+  m_snapOffset: {fileID: 0}
   m_grabPoints:
   - {fileID: 1314334839}
   grabbable: {fileID: 0}
@@ -23853,11 +23855,6 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5974743889826462563, guid: bee1711de7c5ed24c89a9a00e91e8345, type: 3}
   m_PrefabInstance: {fileID: 1633667875}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1637978875 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4083409422666717971, guid: 01296f47b1463b542821c067b16ece9d, type: 3}
-  m_PrefabInstance: {fileID: 1243706093}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1639909303
 GameObject:
