@@ -74,6 +74,7 @@ public class FireballWand : MonoBehaviour
         if (canShoot)
         {
             SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
+
             // Get the forward direction of the fireball spawn point
             Vector3 fireballDirection = fireballSpawnPoint.forward;
 
