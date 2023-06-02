@@ -223,9 +223,9 @@ public class NPCBehaviour : MonoBehaviour
 
     public void NPCHelpingActivity(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
-        agent.SetDestination(Waypoints[waypointIndex].transform.position);
+        agent.SetDestination(Player.transform.position);
 
-        if (Vector3.Distance(agent.transform.position, Waypoints[waypointIndex].transform.position) < 2f)
+        if (Vector3.Distance(agent.transform.position, Player.transform.position) < 3f)
         {
             Debug.Log("here");
             agent.isStopped = true;
