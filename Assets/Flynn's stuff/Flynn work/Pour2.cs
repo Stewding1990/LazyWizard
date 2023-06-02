@@ -68,11 +68,45 @@ public class Pour2 : MonoBehaviour
                         
                         TreeGrow.watered4 = true;
                     }
+
+
+
+                    if (hit.collider.tag == "spoon1")
+                    {
+                        DishTable.spoon1Clean = true;
+                    }
+
+                    if (hit.collider.tag == "plate1")
+                    {
+                        DishTable.plate1Clean = true;
+                    }
+
+                    if (hit.collider.tag == "plate2")
+                    {
+                        DishTable.plate2Clean = true;
+                    }
+
+                    if (hit.collider.tag == "cuttingboard")
+                    {
+                        DishTable.cuttingboardClean = true;
+                    }
+
+                    if (hit.collider.tag == "spoon2")
+                    {
+                        DishTable.spoon2Clean = true;
+                    }
+
+                    if (hit.collider.tag == "bowl1")
+                    {
+                        DishTable.bowl1Clean = true;
+                    }
+
+                    if (hit.collider.tag == "bowl2")
+                    {
+                        DishTable.bowl2Clean = true;
+                    }
                 }
-                
-
-
-
+               
 
                 drip.Play();
             }
