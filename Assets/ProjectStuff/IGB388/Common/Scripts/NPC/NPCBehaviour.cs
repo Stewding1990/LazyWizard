@@ -221,11 +221,11 @@ public class NPCBehaviour : MonoBehaviour
     private float dialogueTimer = 0f;
     private float dialogueInterval = 12f; // Interval in seconds
 
-    public void NPCHelpingActivity(int waypointIndex, AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
+    public void NPCHelpingActivity(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
-        agent.SetDestination(Waypoints[waypointIndex].transform.position);
+        agent.SetDestination(Player.transform.position);
 
-        if (Vector3.Distance(agent.transform.position, Waypoints[waypointIndex].transform.position) < 2f)
+        if (Vector3.Distance(agent.transform.position, Player.transform.position) < 3f)
         {
             Debug.Log("here");
             agent.isStopped = true;

@@ -51,7 +51,7 @@ public class Levitationspell : MonoBehaviour
                 if (selectedObjectRigidbody != null)
                 {
                     Vector3 targetPosition = CalculateTargetPosition();
-                    float distanceToWand = (Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position) / 2);
+                    float distanceToWand = (Vector3.Distance(selectedObjectRigidbody.transform.position, wandTip.transform.position) * .3f);
 
                     if (OVRInput.Get(distanceControlButton))
                     {
