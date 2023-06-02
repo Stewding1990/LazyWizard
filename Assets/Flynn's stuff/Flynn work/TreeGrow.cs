@@ -5,7 +5,12 @@ using UnityEngine;
 public class TreeGrow : MonoBehaviour
 {
 
-    
+    // candle stuff
+    public GameObject IncompleteCandles;
+    public GameObject CompleteCandles;
+
+
+
     public GameObject pot;
     
     public static bool watered1;
@@ -16,8 +21,11 @@ public class TreeGrow : MonoBehaviour
     public Vector3 targetscale = new Vector3(0.05f, 0.05f, 0.05f);
     public float speed = 0.0001f;
 
-    
 
+    bool tree1G = false;
+    bool tree2G = false;
+    bool tree3G = false;
+    bool tree4G = false;
 
     public GameObject potDarker1;
     public GameObject potDarker2;
@@ -69,6 +77,12 @@ public class TreeGrow : MonoBehaviour
             potDarker4.SetActive(true);
         }
 
+        if (tree1G == true & tree2G == true & tree3G == true & tree4G == true)
+        {
+            IncompleteCandles.SetActive(false);
+            CompleteCandles.SetActive(true);
+        }
+
     }
 
 
@@ -80,6 +94,11 @@ public class TreeGrow : MonoBehaviour
             {
                 tree1.transform.localScale = Vector3.Lerp(tree1.transform.localScale, targetscale, speed * Time.deltaTime);  
             } 
+
+            if (tree1.transform.localScale == targetscale)
+            {
+                tree1G = true;
+            }
         }
 
         if (watered2 == true)
@@ -87,6 +106,11 @@ public class TreeGrow : MonoBehaviour
             if (other.tag == "Light")
             {
                 tree2.transform.localScale = Vector3.Lerp(tree2.transform.localScale, targetscale, speed * Time.deltaTime);
+            }
+
+            if (tree2.transform.localScale == targetscale)
+            {
+                tree2G = true;
             }
         }
 
@@ -96,6 +120,10 @@ public class TreeGrow : MonoBehaviour
             {
                 tree3.transform.localScale = Vector3.Lerp(tree3.transform.localScale, targetscale, speed * Time.deltaTime);
             }
+            if (tree3.transform.localScale == targetscale)
+            {
+                tree3G = true;
+            }
         }
 
         if (watered4 == true)
@@ -103,6 +131,10 @@ public class TreeGrow : MonoBehaviour
             if (other.tag == "Light")
             {
                 tree4.transform.localScale = Vector3.Lerp(tree4.transform.localScale, targetscale, speed * Time.deltaTime);
+            }
+            if (tree4.transform.localScale == targetscale)
+            {
+                tree4G = true;
             }
         }
     }

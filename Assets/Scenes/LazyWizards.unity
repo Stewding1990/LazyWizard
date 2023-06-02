@@ -8661,9 +8661,21 @@ PrefabInstance:
       propertyPath: potDarker4
       value: 
       objectReference: {fileID: 1828613760}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: CompleteCandles
+      value: 
+      objectReference: {fileID: 6777738454234172142}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: IncompleteCandles
+      value: 
+      objectReference: {fileID: 1281183226499759200}
     - target: {fileID: 6367312566698880612, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_Name
       value: Tree_Little_Green3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0972275
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8671,7 +8683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.574
+      value: 0.496
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10298,9 +10310,21 @@ PrefabInstance:
       propertyPath: potDarker4
       value: 
       objectReference: {fileID: 1828613760}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: CompleteCandles
+      value: 
+      objectReference: {fileID: 6777738454234172142}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: IncompleteCandles
+      value: 
+      objectReference: {fileID: 1281183226499759200}
     - target: {fileID: 6367312566698880612, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_Name
       value: Tree_Little_Green1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.101875
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10308,7 +10332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.574
+      value: 0.505
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18822,9 +18846,21 @@ PrefabInstance:
       propertyPath: potDarker4
       value: 
       objectReference: {fileID: 1828613760}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: CompleteCandles
+      value: 
+      objectReference: {fileID: 6777738454234172142}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: IncompleteCandles
+      value: 
+      objectReference: {fileID: 1281183226499759200}
     - target: {fileID: 6367312566698880612, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_Name
       value: Tree_Little_Green2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.102865
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18832,7 +18868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.574
+      value: 0.506
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22604,9 +22640,21 @@ PrefabInstance:
       propertyPath: potDarker4
       value: 
       objectReference: {fileID: 1828613760}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: CompleteCandles
+      value: 
+      objectReference: {fileID: 6777738454234172142}
+    - target: {fileID: 6196032308759758382, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: IncompleteCandles
+      value: 
+      objectReference: {fileID: 1281183226499759200}
     - target: {fileID: 6367312566698880612, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_Name
       value: Tree_Little_Green4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0638275
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22614,7 +22662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.574
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 7000294217829616173, guid: fe59be84e54b27743ab5818057094d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -100112,7 +100160,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7940959790986355339}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -115897,7 +115945,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9042978062229664266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

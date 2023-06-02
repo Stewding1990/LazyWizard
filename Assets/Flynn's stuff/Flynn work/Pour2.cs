@@ -5,6 +5,11 @@ using UnityEngine;
 public class Pour2 : MonoBehaviour
 {
 
+    
+
+
+
+
     public ParticleSystem drip;
     public ParticleSystem spark;
     public ParticleSystem Wlight;
@@ -28,15 +33,14 @@ public class Pour2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.Get(OVRInput.RawButton.A))
-        {
-            spark.Play();
-            Wlight.Play();
+        
 
             if (originTop.transform.position.y < originBottom.transform.position.y)
             {
                 //waterTrigger.SetActive(false);
-                
+
+                spark.Play();
+                Wlight.Play();
 
                 RaycastHit hit;
                 if (Physics.Raycast(originTop.transform.position, Vector3.down, out hit))
@@ -78,13 +82,11 @@ public class Pour2 : MonoBehaviour
             {
                 //waterTrigger.SetActive(false);
                 drip.Stop();
+
+                spark.Play();
+                Wlight.Play();
             }
            
-        }
-        else
-        {
-            spark.Stop();
-            Wlight.Stop();
-        }
+        
     }
 }
