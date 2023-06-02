@@ -19,8 +19,7 @@ public class FireballWand : MonoBehaviour
 
     public float VibDuration;
     public float VibStrength;
-    //.3
-    //1
+
 
     void Update()
     {
