@@ -63,36 +63,49 @@ public class DishTable : MonoBehaviour
             spoon1Dirt.SetActive(false);
             spoon1Wet.SetActive(true);
             spoon1.SetActive(false);
+            spoon1Done = true;
         }
 
         if (plate1Clean == true)
         {
             plate1Wet.SetActive(true);
+            plate1Dirt.SetActive(false);
+            plate1Done = true;
         }
 
         if (plate2Clean == true)
         {
             plate2Wet.SetActive(true);
+            plate2Dirt.SetActive(false);
+            plate2Done = true;
         }
 
         if (cuttingboardClean == true)
         {
             cuttingboardWet.SetActive(true);
+            cuttingboardDirt.SetActive(false);
+            cuttingboardDone = true;
         }
 
         if (spoon2Clean == true)
         {
             spoon2Wet.SetActive(true);
+            spoon2Dirt.SetActive(false);
+            spoon2Done = true;
         }
 
         if (bowl1Clean == true)
         {
             bowl1Wet.SetActive(true);
+            bowl1Dirt.SetActive(false);
+            bowl1Done = true;
         }
 
         if (bowl2Clean == true)
         {
             bowl2Wet.SetActive(true);
+            bowl2Dirt.SetActive(false);
+            bowl2Done = true;
         }
 
 
@@ -109,9 +122,11 @@ public class DishTable : MonoBehaviour
         {
             if (other.tag == "Light")
             {
+                
                 spoon1Wet.SetActive(false);
                 spoon1.SetActive(true);
                 spoon1Done = true;
+                Debug.Log("dried");
             }
 
         }
