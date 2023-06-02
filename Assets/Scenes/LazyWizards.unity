@@ -8390,6 +8390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PolyArtWizardMaskTintMat
       objectReference: {fileID: 0}
+    - target: {fileID: 1953271650171834, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4063552230360950, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -9936,6 +9940,8 @@ MonoBehaviour:
   minDistanceToWand: 0.5
   maxDistanceToWand: 5
   distanceThreshold: 0.2
+  VibDuration: 0.1
+  VibStrength: 0.1
 --- !u!114 &696382525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9956,8 +9962,8 @@ MonoBehaviour:
   rightHandDetection: {fileID: 1614791560}
   spellButtonL: 8192
   spellButtonR: 2097152
-  VibDuration: 0
-  VibStrength: 0
+  VibDuration: 0.5
+  VibStrength: 1
 --- !u!136 &696382529
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -107393,6 +107399,8 @@ MonoBehaviour:
   lightTrigger: {fileID: 7940959791332106939}
   lightEffect: {fileID: 7940959790874239368}
   lighteffectGO: {fileID: 7940959790874239371}
+  VibDuration: 1
+  VibStrength: 1
 --- !u!1 &7940959790986355339
 GameObject:
   m_ObjectHideFlags: 0
@@ -123250,6 +123258,8 @@ MonoBehaviour:
   Wlight: {fileID: 9042978061318443414}
   originTop: {fileID: 9042978063091941297}
   originBottom: {fileID: 9042978061588783002}
+  VibDuration: 0.2
+  VibStrength: 0.2
 --- !u!4 &9042978062229664260
 Transform:
   m_ObjectHideFlags: 0

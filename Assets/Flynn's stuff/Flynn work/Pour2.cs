@@ -12,9 +12,13 @@ public class Pour2 : MonoBehaviour
     public GameObject originTop;
     public GameObject originBottom;
 
+    public float VibDuration;
+    public float VibStrength;
+
+
     //public GameObject waterTrigger;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -107,8 +111,8 @@ public class Pour2 : MonoBehaviour
                     }
                 }
                
-
                 drip.Play();
+                SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
             }
             else
             {
@@ -117,6 +121,7 @@ public class Pour2 : MonoBehaviour
 
                 spark.Stop();
                 Wlight.Stop();
+                SimpleHapticVibrationManager.VibrateController(0, 0, OVRInput.Controller.RTouch);
             }
            
        // }
