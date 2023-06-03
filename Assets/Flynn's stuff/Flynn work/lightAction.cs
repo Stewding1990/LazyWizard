@@ -10,6 +10,9 @@ public class lightAction : MonoBehaviour
     public ParticleSystem lightEffect;
     public GameObject lighteffectGO;
 
+    public float VibDuration;
+    public float VibStrength;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +33,16 @@ public class lightAction : MonoBehaviour
             AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.sunSpellSFX);
             lightTrigger.SetActive(true);
 
+            SimpleHapticVibrationManager.VibrateController(VibDuration, VibStrength, OVRInput.Controller.RTouch);
+
         }
         if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
         {
             lighteffectGO.SetActive(false);
             lightEffect.Stop();
             lightTrigger.SetActive(false);
+
+            SimpleHapticVibrationManager.VibrateController(0f, 0f, OVRInput.Controller.RTouch);
         }
 
 
