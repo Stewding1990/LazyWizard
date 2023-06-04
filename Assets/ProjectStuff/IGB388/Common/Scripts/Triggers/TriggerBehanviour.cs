@@ -29,6 +29,7 @@ public class TriggerBehanviour : MonoBehaviour
 
             // Update the NPC's state
             ChangeNpcBehaviour(enter);
+            Debug.Log(npcBehaviour.currentState);
 
             // Wait for the next frame to ensure the state has been updated
             StartCoroutine(ProcessTriggerActions());
@@ -111,14 +112,7 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
-    private void StopActivity()
-    {
-        if (activityCoroutine != null)
-        {
-            StopCoroutine(activityCoroutine);
-            activityCoroutine = null;
-        }
-    }
+
 
     private IEnumerator ActivityCoroutine(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
@@ -128,6 +122,14 @@ public class TriggerBehanviour : MonoBehaviour
 
             // Wait for the next frame
             yield return null;
+        }
+    }
+    private void StopActivity()
+    {
+        if (activityCoroutine != null)
+        {
+            StopCoroutine(activityCoroutine);
+            activityCoroutine = null;
         }
     }
 }

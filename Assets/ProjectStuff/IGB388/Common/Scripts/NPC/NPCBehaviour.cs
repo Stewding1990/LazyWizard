@@ -42,7 +42,7 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject plantCompleteCandles;
     public GameObject plantIncompleteCandles;
 
-    private bool dialoguePlayed = false; // Flag to track if dialogue has been played
+    public bool dialoguePlayed = false; // Flag to track if dialogue has been played
 
 
     // Start is called before the first frame update
@@ -227,7 +227,7 @@ public class NPCBehaviour : MonoBehaviour
 
         if (Vector3.Distance(agent.transform.position, Player.transform.position) < 3f)
         {
-            Debug.Log("here");
+            Debug.Log(Vector3.Distance(agent.transform.position, Player.transform.position) < 3f);
             agent.isStopped = true;
             agent.transform.LookAt(Player.transform);
 
@@ -240,36 +240,42 @@ public class NPCBehaviour : MonoBehaviour
                 if (dialogueTimer >= dialogueInterval)
                 {
                     // Play random dialogue based on the state of candles
-                    if (bookshelfIncompleteCandles.activeSelf)
+                    if (IncompleteCandles.activeSelf)
                     {
-                        Debug.Log("I want to play sound");
                         AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
                         ActivateAnimation();
-                        ResetDialoguePlayedFlag(); // Reset the flag
+                        dialoguePlayed = true; // Set the flag to indicate dialogue has been played
                     }
-                    else if (bookshelfCompleteCandles.activeSelf)
+                    else if (CompleteCandles.activeSelf)
                     {
-                        Debug.Log("I want to play sound x 2");
                         AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
                         ActivateAnimation();
-                        ResetDialoguePlayedFlag(); // Reset the flag
+                        dialoguePlayed = true; // Set the flag to indicate dialogue has been played
                     }
+
+                    dialogueTimer = 0f; // Reset the timer
                 }
+            }
+            else if (AudioManager.Instance.IsSoundFinishedPlaying(AudioManager.Instance.dialogueSource))
+            {
+                ResetDialoguePlayedFlag();
+                Debug.Log("Stop Audio");
+                AudioManager.Instance.StopDialogueClip();
             }
         }
         else
         {
             agent.isStopped = false;
+            ResetDialoguePlayedFlag(); // Reset the flag and timer when the agent moves away
         }
     }
 
+
     private void ResetDialoguePlayedFlag()
     {
-        Debug.Log("Too early");
         dialoguePlayed = false; // Reset the flag to false
         dialogueTimer = 0f; // Reset the timer
     }
-
 
 
 

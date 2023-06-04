@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource dialogueSource; // AudioSource for playing dialogue clips
     public AudioSource loopingSoundEffectSource; // AudioSource for playing dialogue clips
+    private bool isLoopingSoundEffectPlaying = false;
 
     [Header("Bookshelf Activity Dialogue Scripts")]
     public AudioClip[] bookshelfCompletedialogueClips; // Array of dialogue audio clips
@@ -88,6 +89,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No dialogue clips assigned to AudioManager.");
         }
     }
+    public void StopDialogueClip()
+    {
+        dialogueSource.Stop();
+    }
+    public bool IsSoundFinishedPlaying(AudioSource audioSource)
+    {
+        return !audioSource.isPlaying;
+    }
 
     public void PlaySoundEffect(AudioClip soundEffectClip)
     {
@@ -103,14 +112,22 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayLoopingSoundEffect(AudioClip loopingSoundEffectClip)
     {
-        loopingSoundEffectSource.clip = loopingSoundEffectClip;
-        loopingSoundEffectSource.loop = true;
-        loopingSoundEffectSource.Play();
+        if (!isLoopingSoundEffectPlaying)
+        {
+            loopingSoundEffectSource.clip = loopingSoundEffectClip;
+            loopingSoundEffectSource.loop = true;
+            loopingSoundEffectSource.Play();
+            isLoopingSoundEffectPlaying = true;
+        }
     }
 
     public void StopLoopingSoundEffect()
     {
-        loopingSoundEffectSource.Stop();
+        if (isLoopingSoundEffectPlaying)
+        {
+            loopingSoundEffectSource.Stop();
+            isLoopingSoundEffectPlaying = false;
+        }
     }
 
 }

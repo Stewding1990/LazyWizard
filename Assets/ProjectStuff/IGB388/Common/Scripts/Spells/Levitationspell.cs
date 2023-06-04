@@ -33,7 +33,7 @@ public class Levitationspell : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         grabbable = GetComponent<CustomGrabbable>();
-        initialDistanceToWand = wandTip.transform.localPosition * 1.2f;
+        initialDistanceToWand = wandTip.transform.localPosition * .3f;
         currentDistanceToWand = initialDistanceToWand;
     }
 
@@ -108,8 +108,23 @@ public class Levitationspell : MonoBehaviour
     void MoveObjectTowardsTarget(Vector3 targetPosition)
     {
         float movementSpeed = smoothing * Time.deltaTime;
-        selectedObjectRigidbody.position = Vector3.Lerp(selectedObjectRigidbody.position, targetPosition, movementSpeed);
+
+        // Calculate the direction from the current position to the target position
+        Vector3 direction = targetPosition - selectedObjectRigidbody.position;
+
+        // If the object is far from the target position, move it towards the target
+        if (direction.magnitude > distanceThreshold)
+        {
+            Vector3 newPosition = selectedObjectRigidbody.position + direction.normalized * movementSpeed;
+            selectedObjectRigidbody.MovePosition(newPosition);
+        }
+        else
+        {
+            // If the object is close to the target position, snap it to the target
+            selectedObjectRigidbody.MovePosition(targetPosition);
+        }
     }
+
 
 
 
