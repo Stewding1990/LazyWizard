@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
@@ -5153,7 +5153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
@@ -9286,7 +9286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
@@ -12402,7 +12402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
@@ -15277,7 +15277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
@@ -27623,7 +27623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncompleteCandles: {fileID: 6065321168302936012}
-  CompleteCandles: {fileID: 6065321168302936012}
+  CompleteCandles: {fileID: 5189226624095615305}
   spoon1: {fileID: 753410351286651993}
   plate1: {fileID: 2877188210044232760}
   plate2: {fileID: 2265153832924040232}
