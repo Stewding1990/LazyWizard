@@ -61,7 +61,7 @@ public class DishTable : MonoBehaviour
         if (spoon1Clean == true)
         {
             spoon1Dirt.SetActive(false);
-            spoon1Wet.SetActive(true);
+            //spoon1Wet.SetActive(true);
             spoon1.SetActive(false);
             spoon1Done = true;
         }
@@ -113,6 +113,7 @@ public class DishTable : MonoBehaviour
         {
             IncompleteCandles.SetActive(false);
             CompleteCandles.SetActive(true);
+            Debug.Log("dishcandles");
         }
     }
 
