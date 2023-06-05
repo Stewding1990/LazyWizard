@@ -112,6 +112,7 @@ public class TriggerBehanviour : MonoBehaviour
         }
     }
 
+
     private IEnumerator ActivityCoroutine(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
         while (true)

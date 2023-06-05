@@ -90,6 +90,33 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No dialogue clips assigned to AudioManager.");
         }
     }
+    private int currentDialogueIndex = -1; // Variable to keep track of the current dialogue index
+
+    public void PlayNextDialogueClip(AudioClip[] dialogueClips)
+    {
+        if (dialogueClips.Length > 0)
+        {
+            // Increment the current index
+            currentDialogueIndex++;
+
+            // Wrap around to the beginning if the index exceeds the array length
+            if (currentDialogueIndex >= dialogueClips.Length)
+            {
+                currentDialogueIndex = 0;
+            }
+
+            AudioClip nextClip = dialogueClips[currentDialogueIndex];
+
+            Debug.Log("Playing next dialogue clip: " + nextClip.name);
+
+            dialogueSource.clip = nextClip;
+            dialogueSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("No dialogue clips assigned to AudioManager.");
+        }
+    }
     public void StopDialogueClip()
     {
         dialogueSource.Stop();

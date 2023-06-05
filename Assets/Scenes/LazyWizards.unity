@@ -7764,7 +7764,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -13485,6 +13485,7 @@ MonoBehaviour:
   clickButton: {fileID: 8300000, guid: 78ad99fd0a0a5144280b07bbdba84815, type: 3}
   bookshelfSFX: {fileID: 0}
   walkingSFX: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
+  buildingSFX: {fileID: 0}
 --- !u!4 &1060449793
 Transform:
   m_ObjectHideFlags: 0

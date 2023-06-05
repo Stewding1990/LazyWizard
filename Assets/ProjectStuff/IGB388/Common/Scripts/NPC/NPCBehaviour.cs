@@ -238,11 +238,9 @@ public class NPCBehaviour : MonoBehaviour
 
 
 
-    private bool isDialoguePlaying = false; // Flag to track if dialogue is currently playing
-
     public void NPCHelpingActivity(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
-        agent.stoppingDistance = 3f;
+        agent.stoppingDistance = 3.5f;
         float distanceToPlayer = Vector3.Distance(agent.transform.position, Player.transform.position);
         Debug.Log(distanceToPlayer);
 
@@ -253,35 +251,8 @@ public class NPCBehaviour : MonoBehaviour
         else
         {
             StopMoving();
-
-            if (!isDialoguePlaying)
-            {
-                StartCoroutine(PlayDialogueOnce(activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles));
-            }
+            PlayDialogue(activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles);
         }
-    }
-
-    private IEnumerator PlayDialogueOnce(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
-    {
-        isDialoguePlaying = true;
-
-        // Play random dialogue based on the state of candles
-        if (IncompleteCandles.activeSelf)
-        {
-            AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
-        }
-        else if (CompleteCandles.activeSelf)
-        {
-            AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
-        }
-
-        ActivateAnimation();
-
-        // Wait for the dialogue to finish playing
-        yield return new WaitForSeconds(dialogueInterval);
-
-        ResetDialoguePlayedFlag();
-        isDialoguePlaying = false;
     }
 
     private void MoveToDestination()
@@ -295,6 +266,40 @@ public class NPCBehaviour : MonoBehaviour
     {
         agent.isStopped = true;
         animator.SetBool("isWalking", false);
+    }
+
+    private void PlayDialogue(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
+    {
+        if (!dialoguePlayed) // Check if dialogue has already been played
+        {
+            dialogueTimer += Time.deltaTime; // Increment the timer
+            Debug.Log(dialogueTimer);
+
+            // Check if the timer has reached the interval
+            if (dialogueTimer >= dialogueInterval)
+            {
+                // Play random dialogue based on the state of candles
+                if (IncompleteCandles.activeSelf)
+                {
+                    AudioManager.Instance.PlayNextDialogueClip(activityDialogueIncomplete);
+                    ActivateAnimation();
+                    dialoguePlayed = true; // Set the flag to indicate dialogue has been played
+                }
+                else if (CompleteCandles.activeSelf)
+                {
+                    AudioManager.Instance.PlayNextDialogueClip(activityDialogueComplete);
+                    ActivateAnimation();
+                    dialoguePlayed = true; // Set the flag to indicate dialogue has been played
+                }
+
+                dialogueTimer = 0f; // Reset the timer after playing dialogue
+
+            }
+        }
+        else
+        {
+            ResetDialoguePlayedFlag();
+        }
     }
 
     private void ResetDialoguePlayedFlag()
