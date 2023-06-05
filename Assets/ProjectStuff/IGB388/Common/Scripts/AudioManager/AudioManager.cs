@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("NPC SFX")]
     public AudioClip walkingSFX;
+    public AudioClip buildingSFX;
 
     private void Awake()
     {

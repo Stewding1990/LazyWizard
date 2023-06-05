@@ -43,6 +43,9 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject plantIncompleteCandles;
 
     public bool dialoguePlayed = false; // Flag to track if dialogue has been played
+                                        // Declare a variable to track the time
+    private float dialogueTimer = 0f;
+    private float dialogueInterval = 12f; // Interval in seconds
 
 
     // Start is called before the first frame update
@@ -64,7 +67,7 @@ public class NPCBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(agent.velocity.magnitude > 0.15)
+        if (agent.velocity.magnitude > 0.15)
         {
             animator.SetBool("isWalking", true);
             AudioManager.Instance.PlayLoopingSoundEffect(AudioManager.Instance.walkingSFX);
@@ -74,7 +77,7 @@ public class NPCBehaviour : MonoBehaviour
             animator.SetBool("isWalking", false);
             AudioManager.Instance.StopLoopingSoundEffect();
         }
-       
+
         ChangeState();
 
         // Lookup state switch
@@ -109,11 +112,17 @@ public class NPCBehaviour : MonoBehaviour
 
     private void WalkingAround()
     {
-        // Set the destination of the NavMeshAgent
-        agent.SetDestination(Waypoints[waypointIndex].transform.position);
+        agent.stoppingDistance = 0.5f;
+        currentDestination = Waypoints[waypointIndex].transform.position;
+
+        float distanceToDestination = Vector3.Distance(agent.transform.position, currentDestination);
 
         // Check if the agent has reached the current waypoint
-        if (Vector3.Distance(agent.transform.position, Waypoints[waypointIndex].transform.position) <= 1.5f)
+        if (distanceToDestination > agent.stoppingDistance)
+        {
+            agent.SetDestination(currentDestination);
+        }
+        else
         {
             // Update waypoint index
             waypointIndex++;
@@ -130,19 +139,35 @@ public class NPCBehaviour : MonoBehaviour
     {
         if (isAnimating) return;
 
+        agent.stoppingDistance = 0.5f;
+
+        if (destinationIndex >= doingOwnThingWayPoints.Length)
+        {
+            destinationIndex = 0;
+        }
+
         // Set the current destination
         currentDestination = doingOwnThingWayPoints[destinationIndex].transform.position;
 
-        // Move towards the current destination
-        agent.SetDestination(currentDestination);
+        // Check the distance to the current destination
+        float distanceToDestination = Vector3.Distance(agent.transform.position, currentDestination);
 
-        // Check if the agent has reached the current destination
-        if (Vector3.Distance(agent.transform.position, currentDestination) < 2)
+        if (distanceToDestination > agent.stoppingDistance)
         {
+            // Move towards the current destination
+            agent.SetDestination(currentDestination);
+            agent.isStopped = false;
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            // Stop the agent and play animation
             agent.isStopped = true;
+            animator.SetBool("isWalking", false);
             StartCoroutine(PlayAnimationAndWait());
         }
     }
+
 
     private IEnumerator PlayAnimationAndWait()
     {
@@ -163,6 +188,7 @@ public class NPCBehaviour : MonoBehaviour
                 break;
             case 2:
                 animator.SetBool("isBuilding", true);
+                AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.buildingSFX);
                 break;
             case 3:
                 animator.SetBool("isBuilding", true);
@@ -200,84 +226,80 @@ public class NPCBehaviour : MonoBehaviour
                 break;
         }
 
-        // Move to the next destination
-        destinationIndex++;
-        if (destinationIndex >= doingOwnThingWayPoints.Length)
-        {
-            destinationIndex = 0;
-        }
-
         // Resume movement towards the next destination
         agent.isStopped = false;
 
-        // Set the "isWalking" parameter to true to resume the walking animation
-        animator.SetBool("isWalking", true);
-
         // Reset the flag after animation is finished
         isAnimating = false;
+
+        // Move to the next destination
+        destinationIndex++;
     }
 
-    // Declare a variable to track the time
-    private float dialogueTimer = 0f;
-    private float dialogueInterval = 12f; // Interval in seconds
+
+
+    private bool isDialoguePlaying = false; // Flag to track if dialogue is currently playing
 
     public void NPCHelpingActivity(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {
-        agent.SetDestination(Player.transform.position);
+        agent.stoppingDistance = 3f;
+        float distanceToPlayer = Vector3.Distance(agent.transform.position, Player.transform.position);
+        Debug.Log(distanceToPlayer);
 
-        if (Vector3.Distance(agent.transform.position, Player.transform.position) < 3f)
+        if (distanceToPlayer > agent.stoppingDistance)
         {
-            Debug.Log(Vector3.Distance(agent.transform.position, Player.transform.position) < 3f);
-            agent.isStopped = true;
-            agent.transform.LookAt(Player.transform);
-
-            if (!dialoguePlayed) // Check if dialogue has already been played
-            {
-                dialogueTimer += Time.deltaTime; // Increment the timer
-                Debug.Log(dialogueTimer);
-
-                // Check if the timer has reached the interval
-                if (dialogueTimer >= dialogueInterval)
-                {
-                    // Play random dialogue based on the state of candles
-                    if (IncompleteCandles.activeSelf)
-                    {
-                        AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
-                        ActivateAnimation();
-                        dialoguePlayed = true; // Set the flag to indicate dialogue has been played
-                    }
-                    else if (CompleteCandles.activeSelf)
-                    {
-                        AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
-                        ActivateAnimation();
-                        dialoguePlayed = true; // Set the flag to indicate dialogue has been played
-                    }
-
-                    dialogueTimer = 0f; // Reset the timer
-                }
-            }
-            else if (AudioManager.Instance.IsSoundFinishedPlaying(AudioManager.Instance.dialogueSource))
-            {
-                ResetDialoguePlayedFlag();
-                Debug.Log("Stop Audio");
-                AudioManager.Instance.StopDialogueClip();
-            }
+            MoveToDestination();
         }
         else
         {
-            agent.isStopped = false;
-            ResetDialoguePlayedFlag(); // Reset the flag and timer when the agent moves away
+            StopMoving();
+
+            if (!isDialoguePlaying)
+            {
+                StartCoroutine(PlayDialogueOnce(activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles));
+            }
         }
     }
 
+    private IEnumerator PlayDialogueOnce(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
+    {
+        isDialoguePlaying = true;
+
+        // Play random dialogue based on the state of candles
+        if (IncompleteCandles.activeSelf)
+        {
+            AudioManager.Instance.PlayRandomDialogueClip(activityDialogueIncomplete);
+        }
+        else if (CompleteCandles.activeSelf)
+        {
+            AudioManager.Instance.PlayRandomDialogueClip(activityDialogueComplete);
+        }
+
+        ActivateAnimation();
+
+        // Wait for the dialogue to finish playing
+        yield return new WaitForSeconds(dialogueInterval);
+
+        ResetDialoguePlayedFlag();
+        isDialoguePlaying = false;
+    }
+
+    private void MoveToDestination()
+    {
+        agent.SetDestination(Player.transform.position);
+        agent.isStopped = false;
+        animator.SetBool("isWalking", true);
+    }
+
+    private void StopMoving()
+    {
+        agent.isStopped = true;
+        animator.SetBool("isWalking", false);
+    }
 
     private void ResetDialoguePlayedFlag()
     {
         dialoguePlayed = false; // Reset the flag to false
         dialogueTimer = 0f; // Reset the timer
     }
-
-
-
-
 }

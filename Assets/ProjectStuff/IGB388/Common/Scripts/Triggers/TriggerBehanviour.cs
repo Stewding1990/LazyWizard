@@ -52,8 +52,8 @@ public class TriggerBehanviour : MonoBehaviour
                     StartActivity(AudioManager.Instance.bookshelfIncompletedialogueClips, AudioManager.Instance.bookshelfCompletedialogueClips,
                         npcBehaviour.bookshelfIncompleteCandles, npcBehaviour.bookshelfCompleteCandles);
                     break;
-                case "WeaponChestTrigger":
-                    Debug.Log("Weapon Chest");
+                case "TrashBinTrigger":
+                    Debug.Log("Trash Bin");
                     StartActivity(AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips,
                         npcBehaviour.trashBinIncompleteCandles, npcBehaviour.trashBinCompleteCandles);
                     break;
@@ -74,7 +74,7 @@ public class TriggerBehanviour : MonoBehaviour
                     break;
                 case "WeaponRackTrigger":
                     Debug.Log("WeaponRack");
-                    StartActivity(AudioManager.Instance.weaponChestIncompletedialogueClips, AudioManager.Instance.weaponChestCompletedialogueClips,
+                    StartActivity(AudioManager.Instance.weaponRackIncompletedialogueClips, AudioManager.Instance.weaponRackCompletedialogueClips,
                         npcBehaviour.weaponStandIncompleteCandles, npcBehaviour.weaponStandCompleteCandles);
                     break;
             }
@@ -111,8 +111,6 @@ public class TriggerBehanviour : MonoBehaviour
             activityCoroutine = StartCoroutine(ActivityCoroutine(activityDialogueIncomplete, activityDialogueComplete, IncompleteCandles, CompleteCandles));
         }
     }
-
-
 
     private IEnumerator ActivityCoroutine(AudioClip[] activityDialogueIncomplete, AudioClip[] activityDialogueComplete, GameObject IncompleteCandles, GameObject CompleteCandles)
     {

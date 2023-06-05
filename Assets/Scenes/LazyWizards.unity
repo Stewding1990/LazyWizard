@@ -1340,6 +1340,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8913503156494943330, guid: ae555ef92e055410f8f8fbfc927e06c1, type: 3}
   m_PrefabInstance: {fileID: 1464570156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &124684476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2615747307447103624, guid: 4d75f678a75154d4b91d5de1e39214ed, type: 3}
+  m_PrefabInstance: {fileID: 713805209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &130559835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2492557615027591052, guid: 750cf4f7cdd0442dab66850effb8f875, type: 3}
@@ -7709,7 +7714,7 @@ MonoBehaviour:
   - {fileID: 432674401}
   - {fileID: 61844500}
   - {fileID: 266855644}
-  Player: {fileID: 1533059059}
+  Player: {fileID: 124684476}
   ownThingAnimations:
   - {fileID: 7400000, guid: 9cf799ef67aa99a48bfffcb222ef873f, type: 3}
   - {fileID: 7400000, guid: 4a412c425e347044d9bd20cf127cd4c9, type: 3}
@@ -7759,7 +7764,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.3
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -9405,7 +9410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2615747307447103624, guid: 4d75f678a75154d4b91d5de1e39214ed, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2615747307447103630, guid: 4d75f678a75154d4b91d5de1e39214ed, type: 3}
       propertyPath: m_RootOrder
@@ -21276,9 +21281,10 @@ GameObject:
   - component: {fileID: 1533059060}
   - component: {fileID: 1533059062}
   - component: {fileID: 1533059061}
+  - component: {fileID: 1533059063}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21328,6 +21334,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1533059063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533059059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6cfab5ccc198134fa51d52c603404e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536081645
 GameObject:
   m_ObjectHideFlags: 0
@@ -23578,7 +23596,7 @@ GameObject:
   - component: {fileID: 1649952432}
   - component: {fileID: 1649952436}
   m_Layer: 0
-  m_Name: WeaponChestTrigger
+  m_Name: TrashBinTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
